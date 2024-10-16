@@ -10,6 +10,7 @@ import cartIcon from '@icons/svgs/cartIcon.svg'
 
 function Header() {
     const {
+        container,
         containerHeader,
         boxContainer,
         containerMenu,
@@ -19,38 +20,55 @@ function Header() {
     } = styles
 
     return (
-        <div className={containerHeader}>
-            <div className={menuLeft}>
-                <div className={boxContainer}>
-                    {dataBoxIcon.map((item) => {
-                        return <BoxIcon type={item.type} href={item.href} />
-                    })}
+        <div className={container}>
+            <div className={containerHeader}>
+                <div className={menuLeft}>
+                    <div className={boxContainer}>
+                        {dataBoxIcon.map((item, index) => {
+                            return (
+                                <BoxIcon
+                                    key={index}
+                                    type={item.type}
+                                    href={item.href}
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className={containerMenu}>
+                        {dataMenu.slice(0, 3).map((item, index) => {
+                            return <Menu key={index} content={item.content} />
+                        })}
+                    </div>
                 </div>
-                <div className={containerMenu}>
-                    {dataMenu.slice(0, 3).map((item) => {
-                        return <Menu content={item.content} />
-                    })}
+                <div>
+                    <img src={Logo} className={logo} alt='logo' />
                 </div>
-            </div>
-            <div>
-                <img src={Logo} className={logo} alt='logo' />
-            </div>
-            <div className={menuRight}>
-                <div className={containerMenu}>
-                    {dataMenu.slice(3, dataMenu.length).map((item) => {
-                        return <Menu content={item.content} />
-                    })}
-                </div>
+                <div className={menuRight}>
+                    <div className={containerMenu}>
+                        {dataMenu
+                            .slice(3, dataMenu.length)
+                            .map((item, index) => {
+                                return (
+                                    <Menu key={index} content={item.content} />
+                                )
+                            })}
+                    </div>
 
-                <div className={boxContainer}>
-                    <img width={22} height={22} src={reloadIcon} alt='reload' />
-                    <img
-                        width={22}
-                        height={22}
-                        src={heartIcon}
-                        alt='wish list'
-                    />
-                    <img width={22} height={22} src={cartIcon} alt='cart' />
+                    <div className={boxContainer}>
+                        <img
+                            width={22}
+                            height={22}
+                            src={reloadIcon}
+                            alt='reload'
+                        />
+                        <img
+                            width={22}
+                            height={22}
+                            src={heartIcon}
+                            alt='wish list'
+                        />
+                        <img width={22} height={22} src={cartIcon} alt='cart' />
+                    </div>
                 </div>
             </div>
         </div>

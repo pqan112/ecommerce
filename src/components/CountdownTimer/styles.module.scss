@@ -1,0 +1,17 @@
+@import "@styles/variable.module.scss";
+@import "@styles/mixin.module.scss";
+
+.box {
+    background-color: $white_color;
+    padding: 10px;
+    @include radius(4px);
+}
+
+.box + .box {
+    margin-left: 8px;
+}
+
+.label {
+    font-size: 18px;
+    color: $secondary_color;
+}
