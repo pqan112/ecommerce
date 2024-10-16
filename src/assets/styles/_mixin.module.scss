@@ -2,9 +2,25 @@
     border-radius: $radius;
 }
 
-@mixin flex_box_custom($x, $y, $gap: 10px) {
+@mixin flex_box_custom($x, $y, $gap) {
     display: flex;
     justify-content: $x;
     align-items: $y;
-    gap: $gap;
+
+    @if $gap !=0 {
+        gap: $gap;
+    }
+}
+
+@mixin btn($w, $mw, $radius, $color: #fff) {
+    min-width: calc($mw - 32px);
+    padding: 12px 16px;
+    background-color: $color;
+    text-align: center;
+    cursor: pointer;
+    @include radius($radius);
+
+    @if $w !=0 {
+        width: $w;
+    }
 }

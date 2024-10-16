@@ -1,0 +1,37 @@
+@import "@styles/variable.module.scss";
+@import "@styles/mixin.module.scss";
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.containerTimmer {
+    background-image: url("https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/photo-of-man-wearing-white-hoodie-5474310.jpeg");
+    height: 409px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.countdownInfo {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.title {
+    margin: 26px 0 16px;
+    color: $four_color;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.containerItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}

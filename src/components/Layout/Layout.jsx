@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles.module.scss'
 
 function MainLayout({ children }) {
-    const { container } = styles
+    const { container, wrapLayout } = styles
 
     return (
         <main>

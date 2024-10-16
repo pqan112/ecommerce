@@ -1,0 +1,45 @@
+@import "@styles/variable.module.scss";
+
+@import "@styles/mixin.module.scss";
+
+.container {
+    margin: 65px 0 15px;
+}
+
+.headline {
+    position: relative;
+    @include flex_box_custom(center, center, 0);
+    width: 100%;
+    text-align: center;
+
+    &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 2px;
+        width: 100%;
+        background-color: #e1e1e1;
+        z-index: -1;
+        margin-top: 10px;
+        @include radius(6px);
+    }
+}
+
+.content {
+    background-color: $white_color;
+    padding: 0 20px;
+    width: 20%;
+}
+
+.des {
+    font-size: 14px;
+    color: $third_color;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 24px;
+    color: $primary_color;
+}

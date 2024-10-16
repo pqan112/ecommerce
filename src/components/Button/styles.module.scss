@@ -1,0 +1,29 @@
+@import "@styles/variable.module.scss";
+@import "@styles/mixin.module.scss";
+
+.btn {
+    @include btn(0, 176px, 3px, $primary_color);
+    font-weight: 300;
+    font-size: 14px;
+    transition:
+        background-color 200ms,
+        color 200ms;
+    border: 1px solid $primary_color;
+}
+
+.primary {
+    color: $white_color;
+    &:hover {
+        background-color: $white_color;
+        color: $primary_color;
+    }
+}
+
+.secondary {
+    background-color: $white_color;
+    color: $primary_color;
+    &:hover {
+        background-color: $primary_color;
+        color: $white_color;
+    }
+}
