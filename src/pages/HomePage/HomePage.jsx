@@ -1,13 +1,14 @@
-import Banner from '@components/Banner/Banner'
-import Header from '@components/Header/Header'
-import Info from '@components/Info/Info'
-import AdvanceHealine from '@components/AdvanceHealine/AdvanceHealine'
-import styles from './styles.module.scss'
-import HeadingListProducts from '@components/HeadingListProducts/HeadingListProducts'
 import { useEffect, useState } from 'react'
 import { getProducts } from '@/apis/productsService'
+import AdvanceHealine from '@components/AdvanceHealine/AdvanceHealine'
+import Banner from '@components/Banner/Banner'
+import Footer from '@components/Footer/Footer'
+import Header from '@components/Header/Header'
+import Info from '@components/Info/Info'
+import HeadingListProducts from '@components/HeadingListProducts/HeadingListProducts'
 import PopularProduct from '@components/PopularProduct/PopularProduct'
 import SaleHomePage from '@components/SaleHomePage/SaleHomePage'
+import styles from './styles.module.scss'
 
 function HomePage() {
     const [products, setProducts] = useState([])
@@ -32,6 +33,7 @@ function HomePage() {
             <HeadingListProducts products={products.slice(0, 2)} />
             <PopularProduct products={products.slice(2)} />
             <SaleHomePage />
+            <Footer />
         </div>
     )
 }

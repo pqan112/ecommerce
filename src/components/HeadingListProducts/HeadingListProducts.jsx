@@ -22,7 +22,7 @@ function HeadingListProducts({ products }) {
                 <div className={containerItem}>
                     {products.map((product) => (
                         <ProductItem
-                            key={product.id}
+                            key={product._id}
                             src={product.images[0]}
                             prevSrc={product.images[1]}
                             name={product.name}
