@@ -11,7 +11,7 @@ function PopularProduct({ products }) {
                 <div className={container}>
                     {products.map((product) => (
                         <ProductItem
-                            key={product.id}
+                            key={product._id}
                             src={product.images[0]}
                             prevSrc={product.images[1]}
                             name={product.name}

@@ -9,9 +9,6 @@
 .boxImg {
     @include flex_box_custom(center, center, 0);
     width: 100%;
-    img {
-        width: 450px;
-    }
 }
 
 .boxBtn {

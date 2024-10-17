@@ -1,0 +1,37 @@
+@import "@styles/variable.module.scss";
+@import "@styles/mixin.module.scss";
+
+.container {
+    margin-top: 80px;
+    background-color: $third_color;
+    color: $white_color;
+    @include flex_box_custom(center, center, 20px);
+    flex-direction: column;
+    padding: 50px 0;
+}
+
+.boxNav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .navItem {
+        font-size: 15px;
+        cursor: pointer;
+        padding: 0 8px;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .navItem:first-of-type {
+        padding-left: 0;
+    }
+    .navItem:nth-of-type(7) {
+        padding-right: 0;
+    }
+}
+
+.copyRight {
+    margin-top: 20px;
+}

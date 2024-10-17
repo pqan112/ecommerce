@@ -1,41 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import Button from '@components/Button/Button'
+import useIntersectionObserver from '@hooks/useIntersectionObserver'
+import useTranslateX from '@hooks/useTranslateX'
 import styles from './styles.module.scss'
 
 function SaleHomePage() {
-    const [scrollDirection, setScrollDirection] = useState(null)
-    const [translateXPosition, setTranslateXPosition] = useState(80)
-    const previousScrollPosition = useRef(0)
+    const targetRef = useRef(null)
+    const { inViewport } = useIntersectionObserver(targetRef, { threshold: 0 })
+    const { translateXPosition } = useTranslateX(inViewport)
     const { container, title, des, boxBtn, boxImg } = styles
 
-    const scrollTracking = () => {
-        const currentScrollPosition = window.scrollY
-        if (currentScrollPosition > previousScrollPosition.current) {
-            setScrollDirection('down')
-        } else if (currentScrollPosition < previousScrollPosition.current) {
-            setScrollDirection('up')
-        }
-
-        previousScrollPosition.current =
-            currentScrollPosition <= 0 ? 0 : currentScrollPosition
-    }
-
-    const handleTranslateX = () => {
-        if (scrollDirection === 'down') {
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener('scroll', scrollTracking)
-
-        return () => window.removeEventListener('scroll', scrollTracking)
-    }, [])
-
-    console.log(scrollDirection)
-
     return (
-        <div className={container}>
-            <div className={boxImg}>
+        <div className={container} ref={targetRef}>
+            <div
+                className={boxImg}
+                style={{
+                    transform: `translateX(${translateXPosition}px)`,
+                    transition: 'transform 600ms ease'
+                }}
+            >
                 <img
                     src='https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image_1.jpeg'
                     alt=''
@@ -52,7 +35,13 @@ function SaleHomePage() {
                     <Button content={'Read more'} isPrimary={false} />
                 </div>
             </div>
-            <div className={boxImg}>
+            <div
+                className={boxImg}
+                style={{
+                    transform: `translateX(-${translateXPosition}px)`,
+                    transition: 'transform 600ms ease'
+                }}
+            >
                 <img
                     src='https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image_2.jpeg'
                     alt=''
