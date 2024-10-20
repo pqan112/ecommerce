@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BoxIcon from './components/BoxIcon/BoxIcon'
 import Menu from './components/Menu/Menu'
 import { dataBoxIcon, dataMenu } from './constants'
@@ -7,8 +7,12 @@ import styles from './styles.module.scss'
 import reloadIcon from '@icons/svgs/reloadIcon.svg'
 import heartIcon from '@icons/svgs/heart.svg'
 import cartIcon from '@icons/svgs/cartIcon.svg'
+import useScrollHandling from '@hooks/useScrollHandling'
+import clsx from 'clsx'
 
 function Header() {
+    const [fixedPosition, setFixedPosition] = useState(false)
+
     const {
         container,
         containerHeader,
@@ -16,11 +20,20 @@ function Header() {
         containerMenu,
         menuLeft,
         logo,
-        menuRight
+        menuRight,
+        topHeader, 
+        fixedHeader
     } = styles
 
+    const { scrollPosition } = useScrollHandling()
+    useEffect(() => {
+        setFixedPosition(scrollPosition > 100)
+    }, [scrollPosition])
+
     return (
-        <div className={container}>
+        <div className={clsx(container, topHeader, {
+            [fixedHeader]: fixedPosition
+        })}>
             <div className={containerHeader}>
                 <div className={menuLeft}>
                     <div className={boxContainer}>
