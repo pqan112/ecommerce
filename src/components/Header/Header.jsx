@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import clsx from 'clsx'
+import useScrollHandling from '@hooks/useScrollHandling'
+import Logo from '@icons/images/Logo-retina.png'
+import cartIcon from '@icons/svgs/cartIcon.svg'
+import heartIcon from '@icons/svgs/heart.svg'
+import reloadIcon from '@icons/svgs/reloadIcon.svg'
 import BoxIcon from './components/BoxIcon/BoxIcon'
 import Menu from './components/Menu/Menu'
 import { dataBoxIcon, dataMenu } from './constants'
-import Logo from '@icons/images/Logo-retina.png'
 import styles from './styles.module.scss'
-import reloadIcon from '@icons/svgs/reloadIcon.svg'
-import heartIcon from '@icons/svgs/heart.svg'
-import cartIcon from '@icons/svgs/cartIcon.svg'
-import useScrollHandling from '@hooks/useScrollHandling'
-import clsx from 'clsx'
+import { SidebarContext } from '@/contexts/SideBarProvider'
 
 function Header() {
     const [fixedPosition, setFixedPosition] = useState(false)
-
+    const {isOpen, setIsOpen} = useContext(SidebarContext)
+    console.log(isOpen)
     const {
         container,
         containerHeader,
@@ -62,7 +64,7 @@ function Header() {
                             .slice(3, dataMenu.length)
                             .map((item, index) => {
                                 return (
-                                    <Menu key={index} content={item.content} />
+                                    <Menu key={index} content={item.content} setIsOpen={setIsOpen}/>
                                 )
                             })}
                     </div>

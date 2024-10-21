@@ -4,17 +4,23 @@ import {
     RouterProvider
 } from 'react-router-dom'
 import routers from './routers/routers'
+import Sidebar from '@components/Sidebar/Sidebar'
+import SidebarProvider from './contexts/SideBarProvider'
 
 function App() {
     const router = createBrowserRouter(
         createRoutesFromElements(routers)
-        // routers.map((item) => ({
-        //     path: item.path,
-        //     element: <item.component />
-        // }))
     )
 
-    return <RouterProvider router={router} />
+    return (
+        <SidebarProvider>
+            <Sidebar />
+            <RouterProvider router={router} />
+        </SidebarProvider>
+    ) 
+        
+    
+    
 }
 
 export default App
