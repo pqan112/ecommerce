@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import { SidebarContext } from '@/contexts/SideBarProvider'
 import clsx from 'clsx'
 import { TfiClose } from 'react-icons/tfi'
+import Login from '@components/ContentSideBar/Login/Login'
 
 function Sidebar() {
     const { isOpen, setIsOpen } = useContext(SidebarContext)
@@ -27,6 +28,8 @@ function Sidebar() {
                         <TfiClose size={15}/>
                     </div>
                 )}
+                <Login />
+
             </div>
         </div>
     )
