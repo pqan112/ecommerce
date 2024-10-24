@@ -2,5 +2,7 @@ import { create } from 'zustand'
 
 export const useSidebarStore = create((set) => ({
     isOpen: false,
-    setIsOpen: (isOpen) => set({ isOpen })
+    type: '',
+    setIsOpen: (isOpen) => set({ isOpen }),
+    setType: (type) => set({ type })
 }))

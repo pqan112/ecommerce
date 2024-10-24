@@ -1,21 +1,18 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSidebarStore } from '@stores/useSidebarStore'
+import { dataBoxIcon, dataMenu } from './constants'
+import { TfiReload } from 'react-icons/tfi'
+import { BsHeart } from 'react-icons/bs'
+import { PiShoppingCart } from 'react-icons/pi'
 import clsx from 'clsx'
 import useScrollHandling from '@hooks/useScrollHandling'
 import Logo from '@icons/images/Logo-retina.png'
-import cartIcon from '@icons/svgs/cartIcon.svg'
-import heartIcon from '@icons/svgs/heart.svg'
-import reloadIcon from '@icons/svgs/reloadIcon.svg'
 import BoxIcon from './components/BoxIcon/BoxIcon'
 import Menu from './components/Menu/Menu'
-import { dataBoxIcon, dataMenu } from './constants'
 import styles from './styles.module.scss'
-import { SidebarContext } from '@/contexts/SideBarProvider'
-import { useSidebarStore } from '@/store/useSidebarStore'
 
 function Header() {
     const [fixedPosition, setFixedPosition] = useState(false)
-    // const {isOpen, setIsOpen} = useContext(SidebarContext)
-    const { setIsOpen } = useSidebarStore((state) => state)
     const {
         container,
         containerHeader,
@@ -27,11 +24,20 @@ function Header() {
         topHeader,
         fixedHeader
     } = styles
-
+    const { setIsOpen, type, setType, isOpen } = useSidebarStore(
+        (state) => state
+    )
     const { scrollPosition } = useScrollHandling()
     useEffect(() => {
         setFixedPosition(scrollPosition > 100)
     }, [scrollPosition])
+
+    const handleOpenSidebar = (type) => {
+        setIsOpen(true)
+        setType(type)
+    }
+
+    console.log(isOpen, type)
 
     return (
         <div
@@ -77,19 +83,27 @@ function Header() {
                     </div>
 
                     <div className={boxContainer}>
-                        <img
-                            width={22}
-                            height={22}
-                            src={reloadIcon}
-                            alt='reload'
+                        <TfiReload
+                            style={{
+                                fontSize: '18px',
+                                cursor: 'pointer'
+                            }}
+                            onClick={() => handleOpenSidebar('compare')}
                         />
-                        <img
-                            width={22}
-                            height={22}
-                            src={heartIcon}
-                            alt='wish list'
+                        <BsHeart
+                            style={{
+                                fontSize: '18px',
+                                cursor: 'pointer'
+                            }}
+                            onClick={() => handleOpenSidebar('wishList')}
                         />
-                        <img width={22} height={22} src={cartIcon} alt='cart' />
+                        <PiShoppingCart
+                            style={{
+                                fontSize: '20px',
+                                cursor: 'pointer'
+                            }}
+                            onClick={() => handleOpenSidebar('cart')}
+                        />
                     </div>
                 </div>
             </div>

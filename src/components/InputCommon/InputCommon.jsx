@@ -9,10 +9,8 @@ function InputCommon({ label, type, ...props }) {
     const handleShowPassword = () => {
         setShowPassword((prev) => !prev)
     }
-    const isPassword = type === 'password';
-    const inputType = isPassword && showPassword ? 'text' : type; 
-    console.log('inputType', inputType)
-
+    const isPassword = type === 'password'
+    const inputType = isPassword && showPassword ? 'text' : type
 
     const { container, labelInput, boxInput, boxIcon } = styles
     return (
@@ -21,13 +19,12 @@ function InputCommon({ label, type, ...props }) {
                 {label}
             </label>
             <div className={boxInput}>
-                <input id={props.id} type={inputType}/>
-
+                <input id={props.id} type={inputType} />
 
                 {isPassword && (
-                <div className={boxIcon} onClick={handleShowPassword}>
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                </div>
+                    <div className={boxIcon} onClick={handleShowPassword}>
+                        {showPassword ? <FiEyeOff /> : <FiEye />}
+                    </div>
                 )}
             </div>
         </div>
