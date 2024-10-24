@@ -10,11 +10,12 @@ import Menu from './components/Menu/Menu'
 import { dataBoxIcon, dataMenu } from './constants'
 import styles from './styles.module.scss'
 import { SidebarContext } from '@/contexts/SideBarProvider'
+import { useSidebarStore } from '@/store/useSidebarStore'
 
 function Header() {
     const [fixedPosition, setFixedPosition] = useState(false)
-    const {isOpen, setIsOpen} = useContext(SidebarContext)
-    console.log(isOpen)
+    // const {isOpen, setIsOpen} = useContext(SidebarContext)
+    const { setIsOpen } = useSidebarStore((state) => state)
     const {
         container,
         containerHeader,
@@ -23,7 +24,7 @@ function Header() {
         menuLeft,
         logo,
         menuRight,
-        topHeader, 
+        topHeader,
         fixedHeader
     } = styles
 
@@ -33,9 +34,11 @@ function Header() {
     }, [scrollPosition])
 
     return (
-        <div className={clsx(container, topHeader, {
-            [fixedHeader]: fixedPosition
-        })}>
+        <div
+            className={clsx(container, topHeader, {
+                [fixedHeader]: fixedPosition
+            })}
+        >
             <div className={containerHeader}>
                 <div className={menuLeft}>
                     <div className={boxContainer}>
@@ -64,7 +67,11 @@ function Header() {
                             .slice(3, dataMenu.length)
                             .map((item, index) => {
                                 return (
-                                    <Menu key={index} content={item.content} setIsOpen={setIsOpen}/>
+                                    <Menu
+                                        key={index}
+                                        content={item.content}
+                                        setIsOpen={setIsOpen}
+                                    />
                                 )
                             })}
                     </div>

@@ -4,9 +4,10 @@ import { SidebarContext } from '@/contexts/SideBarProvider'
 import clsx from 'clsx'
 import { TfiClose } from 'react-icons/tfi'
 import Login from '@components/ContentSideBar/Login/Login'
+import { useSidebarStore } from '@/store/useSidebarStore'
 
 function Sidebar() {
-    const { isOpen, setIsOpen } = useContext(SidebarContext)
+    const { isOpen, setIsOpen } = useSidebarStore((state) => state)
 
     const { container, overlay, sideBar, sidebarOpen, boxIcon } = styles
 
@@ -25,11 +26,10 @@ function Sidebar() {
             >
                 {isOpen && (
                     <div className={boxIcon} onClick={() => setIsOpen(false)}>
-                        <TfiClose size={15}/>
+                        <TfiClose size={15} />
                     </div>
                 )}
                 <Login />
-
             </div>
         </div>
     )
