@@ -8,11 +8,11 @@ function useTranslateX(inViewport) {
     const handleTranslateX = () => {
         if (scrollDirection === 'down' && inViewport) {
             setTranslateXPosition(
-                translateXPosition <= 0 ? 0 : translateXPosition - 2
+                translateXPosition <= 0 ? 0 : translateXPosition - 3
             )
         } else if (scrollDirection === 'up') {
             setTranslateXPosition(
-                translateXPosition >= 80 ? 80 : translateXPosition + 2
+                translateXPosition >= 80 ? 80 : translateXPosition + 3
             )
         }
     }

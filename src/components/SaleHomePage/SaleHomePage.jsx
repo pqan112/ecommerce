@@ -16,7 +16,7 @@ function SaleHomePage() {
                 className={boxImg}
                 style={{
                     transform: `translateX(${translateXPosition}px)`,
-                    transition: 'transform 600ms ease'
+                    transition: 'transform 500ms ease'
                 }}
             >
                 <img
@@ -39,7 +39,7 @@ function SaleHomePage() {
                 className={boxImg}
                 style={{
                     transform: `translateX(-${translateXPosition}px)`,
-                    transition: 'transform 600ms ease'
+                    transition: 'transform 500ms ease'
                 }}
             >
                 <img

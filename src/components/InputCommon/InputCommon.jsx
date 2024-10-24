@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { createContext, forwardRef, useId, useState } from 'react'
 import { FiEye } from 'react-icons/fi'
 import { FiEyeOff } from 'react-icons/fi'
 import styles from './styles.module.scss'
+import { Controller, FormProvider } from 'react-hook-form'
 
-function InputCommon({ label, type, ...props }) {
+const InputCommon = forwardRef(({ label, type, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(false)
 
     const handleShowPassword = () => {
@@ -19,7 +20,7 @@ function InputCommon({ label, type, ...props }) {
                 {label}
             </label>
             <div className={boxInput}>
-                <input id={props.id} type={inputType} />
+                <input id={props.id} type={inputType} ref={ref} {...props} />
 
                 {isPassword && (
                     <div className={boxIcon} onClick={handleShowPassword}>
@@ -29,6 +30,30 @@ function InputCommon({ label, type, ...props }) {
             </div>
         </div>
     )
+})
+
+const Form = FormProvider
+
+const FormFieldContext = createContext({})
+
+const FormField = ({ ...props }) => {
+    return (
+        <FormFieldContext.Provider value={{ name: props.name }}>
+            <Controller {...props} />
+        </FormFieldContext.Provider>
+    )
 }
 
-export default InputCommon
+const FormItemContext = createContext({})
+
+const FormItem = forwardRef(({ className, ...props }, ref) => {
+    const id = useId()
+
+    return (
+        <FormItemContext.Provider value={{ id }}>
+            <div ref={ref} {...props} />
+        </FormItemContext.Provider>
+    )
+})
+
+export { InputCommon, Form, FormField, FormItem }
