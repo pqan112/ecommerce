@@ -26,5 +26,12 @@
             right: 0;
             cursor: pointer;
         }
+
+        .errMessage {
+            display: block;
+            margin-top: 8px;
+            color: red;
+            font-size: 14px;
+        }
     }
 }

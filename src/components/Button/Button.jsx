@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 import clsx from 'clsx'
 
-function Button({type, content, isWithFull, isPrimary = true }) {
+function Button({ type, content, isWithFull, isPrimary = true, ...props }) {
     const { btn, primary, secondary, widthFull } = styles
     return (
         <button
@@ -11,6 +11,7 @@ function Button({type, content, isWithFull, isPrimary = true }) {
                 [primary]: isPrimary,
                 [secondary]: !isPrimary
             })}
+            {...props}
         >
             {content}
         </button>
