@@ -9,12 +9,13 @@ import {
     InputCommon
 } from '@components/InputCommon/InputCommon'
 import { z } from 'zod'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { ToastContext } from '@contexts/ToastProvider'
 
 function Login() {
     const { container, title, lostPw } = styles
-
     const [isRegister, setIsRegister] = useState(false)
+    const { toast } = useContext(ToastContext)
 
     const LoginBody = z
         .object({
@@ -145,6 +146,7 @@ function Login() {
                         type='submit'
                         content={isRegister ? 'REGISTER' : 'LOGIN'}
                         isWithFull
+                        onClick={() => toast.success('aaaa')}
                     />
                 </form>
             </Form>

@@ -13,7 +13,8 @@ export default defineConfig({
             '@hooks': path.resolve(__dirname, 'src/hooks'),
             '@stores': path.resolve(__dirname, 'src/stores'),
             '@styles': path.resolve(__dirname, 'src/assets/styles'),
-            '@icons': path.resolve(__dirname, 'src/assets/icons')
+            '@icons': path.resolve(__dirname, 'src/assets/icons'),
+            '@contexts': path.resolve(__dirname, 'src/contexts')
         }
     },
     css: {

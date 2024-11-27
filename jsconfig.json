@@ -6,7 +6,8 @@
             "@pages/*": ["src/pages/*"],
             "@hooks/*": ["src/hooks/*"],
             "@stores/*": ["src/stores/*"],
-            "@assets/*": ["src/assets/*"]
+            "@assets/*": ["src/assets/*"],
+            "@contexts/*": ["src/contexts/*"]
         }
     },
     "include": ["src/**/*"]
