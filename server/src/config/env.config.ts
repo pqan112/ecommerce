@@ -1,21 +1,17 @@
+import z from 'zod'
 import fs from 'fs'
 import path from 'path'
-import z from 'zod'
-import { config } from 'dotenv'
 
-const envFile =
+export const envFile =
   process.env.NODE_ENV === 'production'
     ? ['.env.prod', '.env']
     : ['.env.dev', '.env']
-
-config({ path: envFile })
 
 // Kiểm tra coi thử có file .env hay chưa
 if (!fs.existsSync(path.resolve('.env'))) {
   console.log('Không tìm thấy file .env')
   process.exit(1)
 }
-
 const configSchema = z.object({
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
@@ -35,16 +31,26 @@ const configSchema = z.object({
 
 export type Env = z.infer<typeof configSchema>
 
-function validateEnv(): Env {
-  const configServer = configSchema.safeParse(process.env)
-  if (!configServer.success) {
-    const issues = configServer.error.issues
+// Called once by Nest's ConfigModule (`validate` option), which already merges
+// the parsed `envFilePath` files into `process.env` before invoking this.
+export function validateEnv(config: Record<string, unknown>): Env {
+  const result = configSchema.safeParse(config)
+  if (!result.success) {
+    const issues = result.error.issues
       .map((issue) => `- ${issue.path.join('.')}: ${issue.message}`)
       .join('\n')
     throw new Error(`Invalid env configuration:\n${issues}`)
   }
-  return configServer.data
+  return result.data
 }
 
-const envConfig = validateEnv()
-export default envConfig
+// Nest writes the validated env back onto `process.env`
+// before instantiating any `load` factories,
+// `registerAs` factories can safely re-derive typed,
+// coerced values from it.
+// Memoized so the schema is only re-parsed once.
+let cachedEnv: Env | undefined
+export function getEnv(): Env {
+  cachedEnv ??= validateEnv(process.env)
+  return cachedEnv
+}

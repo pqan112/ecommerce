@@ -2,7 +2,7 @@ import { INestApplication, VersioningType } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import cookieParser from 'cookie-parser'
 import { Logger } from 'nestjs-pino'
-import { APP_CONFIG } from '../configs/app/app.config.js'
+import { APP_CONFIG, AppConfig } from '../config/app/app.config.js'
 
 export function setupApp(
   app: INestApplication,
@@ -12,7 +12,7 @@ export function setupApp(
   // read cookies
   app.use(cookieParser())
   // CORS
-  const appCfg = config.getOrThrow<{ corsOrigins: string[] }>(APP_CONFIG)
+  const appCfg = config.getOrThrow<AppConfig>(APP_CONFIG)
   const allowList = appCfg.corsOrigins
   logger.log(`CORS: ${allowList.length} allowed origin(s)`)
   app.enableCors({

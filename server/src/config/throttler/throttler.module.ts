@@ -1,19 +1,15 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule, ConfigService } from '@nestjs/config'
+import { ConfigService } from '@nestjs/config'
 import { ThrottlerModule } from '@nestjs/throttler'
-import throttlerConfig, { THROTTLER_CONFIG } from './throttler.config.js'
+import { THROTTLER_CONFIG, ThrottlerConfig } from './throttler.config.js'
 
 @Module({
   imports: [
     ThrottlerModule.forRootAsync({
-      imports: [ConfigModule.forFeature(throttlerConfig)],
+      imports: [],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const cfg = config.getOrThrow<{
-          ttl: number
-          limit: number
-          blockDuration: number
-        }>(THROTTLER_CONFIG)
+        const cfg = config.getOrThrow<ThrottlerConfig>(THROTTLER_CONFIG)
 
         return {
           throttlers: [

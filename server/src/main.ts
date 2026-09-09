@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import { Logger } from 'nestjs-pino'
 import { AppModule } from './app.module.js'
 import { setupApp } from './bootstrap/setup-app.js'
-import { APP_CONFIG } from './configs/app/app.config.js'
+import { APP_CONFIG, AppConfig } from './config/app/app.config.js'
 
 async function bootstrap() {
   // setup logger
@@ -12,7 +12,7 @@ async function bootstrap() {
   const logger = app.get(Logger)
   const config = app.get(ConfigService)
   setupApp(app, logger, config)
-  const appCfg = config.getOrThrow<{ port: number }>(APP_CONFIG)
+  const appCfg = config.getOrThrow<AppConfig>(APP_CONFIG)
   const port = appCfg.port
   await app.listen(port)
   logger.log(`App is running on port: ${port}`)

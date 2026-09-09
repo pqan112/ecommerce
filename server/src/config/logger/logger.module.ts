@@ -1,16 +1,19 @@
 import { Module } from '@nestjs/common'
-import { LoggerModule } from 'nestjs-pino'
-import envConfig from '../env.config.js'
-import { IncomingMessage } from 'http'
-import { CORRELATION_ID_HEADER } from '../../shared/constants/headers.constant.js'
+import { ConfigService } from '@nestjs/config'
 import { randomUUID } from 'crypto'
+import { IncomingMessage } from 'http'
+import { LoggerModule } from 'nestjs-pino'
+import { CORRELATION_ID_HEADER } from '../../shared/constants/headers.constant.js'
+import { Env } from '../env.config.js'
 
 @Module({
   imports: [
     // logger with pino
     LoggerModule.forRootAsync({
-      useFactory: () => {
-        const isDev = envConfig.NODE_ENV === 'development'
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        const nodeEnv = config.getOrThrow<Env['NODE_ENV']>('NODE_ENV')
+        const isDev = nodeEnv === 'development'
         return {
           pinoHttp: {
             level: isDev ? 'debug' : 'info',
@@ -25,7 +28,7 @@ import { randomUUID } from 'crypto'
                   },
                 }
               : undefined,
-            //   TODO: thêm reqId
+            // add reqId
             genReqId: (req, res) => {
               const exsiting = req.headers[CORRELATION_ID_HEADER]
               const id = exsiting ?? randomUUID()

@@ -5,23 +5,32 @@ import {
   HttpException,
   Injectable,
 } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { PinoLogger } from 'nestjs-pino'
 import { ZodSerializationException } from 'nestjs-zod'
 
 import { ZodError as ZodErrorV4 } from 'zod'
 import { Response, Request } from 'express'
-import { CORRELATION_ID_HEADER } from '../shared/constants/headers.constant.js'
+import { CORRELATION_ID_HEADER } from '../../shared/constants/headers.constant.js'
+import { Env } from '../../config/env.config.js'
 import {
   buildApiErrorPayload,
   extractFromHttpExceptionBody,
   payloadFromUnknownException,
-} from '../utils/api-error-response.js'
+} from '../../shared/utils/api-error-response.js'
 
 @Catch()
 @Injectable()
 export class AllExceptionFilter implements ExceptionFilter {
-  constructor(private readonly logger: PinoLogger) {
+  private readonly isProd: boolean
+
+  constructor(
+    private readonly logger: PinoLogger,
+    config: ConfigService,
+  ) {
     this.logger.setContext(AllExceptionFilter.name)
+    this.isProd =
+      config.getOrThrow<Env['NODE_ENV']>('NODE_ENV') === 'production'
   }
 
   catch(exception: unknown, host: ArgumentsHost) {
@@ -74,7 +83,7 @@ export class AllExceptionFilter implements ExceptionFilter {
       stack: exception instanceof Error ? exception.stack : undefined,
     })
 
-    const payload = payloadFromUnknownException(exception, ctx)
+    const payload = payloadFromUnknownException(exception, ctx, this.isProd)
     res.status(payload.statusCode).json(payload)
     return
   }

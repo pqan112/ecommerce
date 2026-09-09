@@ -1,5 +1,4 @@
 import { HttpStatus } from '@nestjs/common'
-import envConfig from '../configs/env.config.js'
 
 export type ApiErrorPayload = {
   success: false
@@ -66,10 +65,10 @@ export function extractFromHttpExceptionBody(
 export function payloadFromUnknownException(
   exception: unknown,
   ctx: ApiErrorContext,
+  isProd: boolean,
 ): ApiErrorPayload {
-  const prod = envConfig.NODE_ENV === 'production'
   if (exception instanceof Error) {
-    const message = prod
+    const message = isProd
       ? 'errors.common.internalServerError'
       : exception.message
     return buildApiErrorPayload(
