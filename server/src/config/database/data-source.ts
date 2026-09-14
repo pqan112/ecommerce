@@ -1,13 +1,11 @@
 import dotenv from 'dotenv'
-import { getEnv } from '../env.config.js'
+import { envFile, getEnv } from '../env.config.js'
 import { DataSource } from 'typeorm'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 
-const env = getEnv()
+dotenv.config({ path: envFile })
 
-dotenv.config({
-  path: env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev',
-})
+const env = getEnv()
 
 export default new DataSource({
   type: 'postgres',

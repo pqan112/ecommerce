@@ -1,0 +1,10 @@
+import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { Account } from './entities/account.entity.js'
+import { Session } from './entities/session.entity.js'
+import { Verification } from './entities/verification.entity.js'
+
+@Module({
+  imports: [TypeOrmModule.forFeature([Account, Session, Verification])],
+})
+export class AuthModule {}
