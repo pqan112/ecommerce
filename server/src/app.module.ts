@@ -15,6 +15,7 @@ import { TypeOrmConfigService } from './config/database/typeorm-config.service.j
 import { UserModule } from './app/user/user.module.js'
 import { AuthModule } from './app/auth/auth.module.js'
 import { AddressModule } from './app/address/address.module.js'
+import { CategoryModule } from './category/category.module.js';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { AddressModule } from './app/address/address.module.js'
     UserModule,
     AuthModule,
     AddressModule,
+    CategoryModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },

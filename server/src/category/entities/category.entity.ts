@@ -1,0 +1,46 @@
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm'
+import { BaseEntity } from '../../config/database/base.entity.js'
+
+@Entity()
+export class Category extends BaseEntity {
+  @Column({ type: 'varchar', length: 100 })
+  name: string
+
+  @Column({ type: 'text', nullable: true })
+  description: string | null
+
+  @Column({ type: 'text', nullable: true })
+  imageKey: string | null
+
+  @Column({ type: 'varchar', length: 100, unique: true })
+  slug: string
+
+  @Column({ type: 'boolean', default: true })
+  isActive: boolean
+
+  @Column({ type: 'int', default: 0 })
+  displayOrder: number
+
+  @DeleteDateColumn({ type: 'timestamptz', nullable: true })
+  deletedAt: Date | null
+
+  @Index()
+  @Column({ type: 'uuid', nullable: true })
+  parentId: string | null
+  @ManyToOne(() => Category, (category) => category.children, {
+    nullable: true,
+  })
+  @JoinColumn({ name: 'parent_id' })
+  parent: Category | null
+
+  @OneToMany(() => Category, (category) => category.parent)
+  children: Category[]
+}
