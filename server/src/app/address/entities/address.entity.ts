@@ -1,0 +1,54 @@
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm'
+import { BaseEntity } from '../../../config/database/base.entity.js'
+import { User } from '../../user/entities/user.entity.js'
+
+@Entity()
+@Index('user_default_address', ['userId'], {
+  unique: true,
+  where: '"is_default" = true AND "deleted_at" IS NULL',
+})
+export class Address extends BaseEntity {
+  @Index()
+  @Column({ type: 'uuid' })
+  userId: string
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id' })
+  user: User
+
+  @Column({ type: 'varchar', length: 100 })
+  fullName: string
+
+  @Column({ type: 'varchar', length: 20 })
+  phone: string
+
+  @Column({ type: 'varchar', length: 225 })
+  addressLine1: string
+
+  @Column({ type: 'varchar', length: 225, nullable: true })
+  addressLine2: string | null
+
+  @Column({ type: 'varchar', length: 100 })
+  ward: string
+
+  @Column({ type: 'varchar', length: 100 })
+  district: string
+
+  @Column({ type: 'varchar', length: 100 })
+  city: string
+
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  postalCode: string | null
+
+  @Column({ type: 'boolean', default: false })
+  isDefault: boolean
+
+  @DeleteDateColumn({ type: 'timestamptz', nullable: true })
+  deletedAt: Date | null
+}

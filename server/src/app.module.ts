@@ -12,8 +12,9 @@ import { CorrelationIdMiddleware } from './core/middlewares/correlation-id.middl
 import CustomZodValidationPipe from './core/pipes/custom-zod-validation.pipe.js'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { TypeOrmConfigService } from './config/database/typeorm-config.service.js'
-import { UserModule } from './app/user/user.module.js';
-import { AuthModule } from './app/auth/auth.module.js';
+import { UserModule } from './app/user/user.module.js'
+import { AuthModule } from './app/auth/auth.module.js'
+import { AddressModule } from './app/address/address.module.js'
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { AuthModule } from './app/auth/auth.module.js';
     }),
     UserModule,
     AuthModule,
+    AddressModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
