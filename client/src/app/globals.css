@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* setup font Inter and Space Grotesk */
   --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
   --font-display:
     var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
@@ -171,6 +172,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* set default font: font-sans */
   body {
     @apply bg-background text-foreground font-sans;
   }
