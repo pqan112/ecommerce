@@ -19,6 +19,7 @@ import { envFile, validateEnv } from '@config/env.config.js'
 import { PinoLoggerModule } from '@config/logger/logger.module.js'
 import { AppThrottlerModule } from '@config/throttler/throttler.module.js'
 import { ProductImageModule } from './app/product-image/product-image.module.js';
+import { EmailModule } from './app/email/email.module.js';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { ProductImageModule } from './app/product-image/product-image.module.js'
     CategoryModule,
     ProductModule,
     ProductImageModule,
+    EmailModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
