@@ -8,16 +8,15 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { PinoLogger } from 'nestjs-pino'
 import { ZodSerializationException } from 'nestjs-zod'
-
 import { ZodError as ZodErrorV4 } from 'zod'
 import { Response, Request } from 'express'
-import { CORRELATION_ID_HEADER } from '../../shared/constants/headers.constant.js'
-import { Env } from '../../config/env.config.js'
+import { Env } from '@config/env.config.js'
+import { CORRELATION_ID_HEADER } from '@shared/constants/headers.constant.js'
 import {
   buildApiErrorPayload,
   extractFromHttpExceptionBody,
   payloadFromUnknownException,
-} from '../../shared/utils/api-error-response.js'
+} from '@shared/utils/api-error-response.js'
 
 @Catch()
 @Injectable()

@@ -2,8 +2,8 @@ import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import { Logger } from 'nestjs-pino'
 import { AppModule } from './app.module.js'
-import { setupApp } from './bootstrap/setup-app.js'
-import { APP_CONFIG, AppConfig } from './config/app/app.config.js'
+import { setupApp } from '@bootstrap/setup-app.js'
+import { APP_CONFIG, AppConfig } from '@config/app/app.config.js'
 
 async function bootstrap() {
   // setup logger

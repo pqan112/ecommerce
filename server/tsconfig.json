@@ -21,6 +21,23 @@
     "types": [
       "vitest/globals",
       "node"
-    ]
+    ],
+    "paths": {
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@core/*": [
+        "./src/core/*"
+      ],
+      "@shared/*": [
+        "./src/shared/*"
+      ],
+      "@bootstrap/*": [
+        "./src/bootstrap/*"
+      ]
+    }
   }
 }

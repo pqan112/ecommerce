@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config'
 import { randomUUID } from 'crypto'
 import { IncomingMessage } from 'http'
 import { LoggerModule } from 'nestjs-pino'
-import { CORRELATION_ID_HEADER } from '../../shared/constants/headers.constant.js'
+import { CORRELATION_ID_HEADER } from '@shared/constants/headers.constant.js'
 import { Env } from '../env.config.js'
 
 @Module({

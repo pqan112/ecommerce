@@ -2,7 +2,7 @@ import { INestApplication, VersioningType } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import cookieParser from 'cookie-parser'
 import { Logger } from 'nestjs-pino'
-import { APP_CONFIG, AppConfig } from '../config/app/app.config.js'
+import { APP_CONFIG, AppConfig } from '@config/app/app.config.js'
 
 export function setupApp(
   app: INestApplication,

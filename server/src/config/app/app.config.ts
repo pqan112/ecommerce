@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config'
 import { getEnv } from '../env.config.js'
-import { parseEnvOrigins } from '../../shared/utils/parse-env-origins.js'
+import { parseEnvOrigins } from '@shared/utils/parse-env-origins.js'
 
 export const APP_CONFIG = 'app'
 

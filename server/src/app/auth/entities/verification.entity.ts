@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm'
-import { BaseEntity } from '../../../config/database/base.entity.js'
+import { BaseEntity } from '@config/database/base.entity.js'
 
 @Entity()
 export class Verification extends BaseEntity {

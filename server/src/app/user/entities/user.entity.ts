@@ -1,7 +1,7 @@
 import { Column, DeleteDateColumn, Entity } from 'typeorm'
-import { BaseEntity } from '../../../config/database/base.entity.js'
-import { UserRole } from '../../../shared/types/user-role.enum.js'
-import { Gender } from '../../../shared/types/gender.enum.js'
+import { BaseEntity } from '@config/database/base.entity.js'
+import { UserRole } from '@shared/types/user-role.enum.js'
+import { Gender } from '@shared/types/gender.enum.js'
 
 @Entity()
 export class User extends BaseEntity {

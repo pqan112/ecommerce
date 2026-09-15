@@ -1,3 +1,4 @@
+import { BaseEntity } from '@config/database/base.entity.js'
 import {
   Column,
   DeleteDateColumn,
@@ -7,7 +8,6 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm'
-import { BaseEntity } from '../../config/database/base.entity.js'
 
 @Entity()
 export class Category extends BaseEntity {
