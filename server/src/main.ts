@@ -4,6 +4,7 @@ import { Logger } from 'nestjs-pino'
 import { AppModule } from './app.module.js'
 import { setupApp } from '@bootstrap/setup-app.js'
 import { APP_CONFIG, AppConfig } from '@config/app/app.config.js'
+import { setupSwagger } from '@bootstrap/setup-swagger.js'
 
 async function bootstrap() {
   // setup logger
@@ -12,10 +13,13 @@ async function bootstrap() {
   const logger = app.get(Logger)
   const config = app.get(ConfigService)
   setupApp(app, logger, config)
+  setupSwagger(app, config)
   const appCfg = config.getOrThrow<AppConfig>(APP_CONFIG)
+
   const port = appCfg.port
   await app.listen(port)
   logger.log(`App is running on port: ${port}`)
+  logger.log(`Swagger documentation available at http://localhost:${port}/docs`)
 }
 void bootstrap().catch((err) => {
   console.log('Bootstrap failed:', err)
