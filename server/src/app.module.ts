@@ -5,7 +5,6 @@ import { ThrottlerGuard } from '@nestjs/throttler'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ZodSerializerInterceptor } from 'nestjs-zod'
 
-import { AddressModule } from '@app/address/address.module.js'
 import { AuthModule } from '@app/auth/auth.module.js'
 import { CategoryModule } from '@app/category/category.module.js'
 import { ProductModule } from '@app/product/product.module.js'
@@ -18,8 +17,9 @@ import { TypeOrmConfigService } from '@config/database/typeorm-config.service.js
 import { envFile, validateEnv } from '@config/env.config.js'
 import { PinoLoggerModule } from '@config/logger/logger.module.js'
 import { AppThrottlerModule } from '@config/throttler/throttler.module.js'
-import { ProductImageModule } from './app/product-image/product-image.module.js';
-import { EmailModule } from './app/email/email.module.js';
+import { ProductImageModule } from '@app/product-image/product-image.module.js'
+import { EmailModule } from '@app/email/email.module.js'
+import { AddressModule } from '@app/address/address.module.js'
 
 @Module({
   imports: [
