@@ -126,7 +126,6 @@ export class AuthService {
     return {
       success: true,
       message: 'Xác thực email thành công',
-      user: null,
     }
   }
 }

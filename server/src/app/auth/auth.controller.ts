@@ -6,11 +6,16 @@ import {
   Query,
   Req,
 } from '@nestjs/common'
-import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { AuthService } from './auth.service.js'
 import { ZodResponse } from 'nestjs-zod'
 import { GetCurrentUserResponseDto } from '@app/user/user.dto.js'
 import type { Request } from 'express'
+import {
+  CheckAuthResponseDto,
+  GetSessionResponseDto,
+  VerifyEmailResponseDto,
+} from './auth.dto.js'
 
 @ApiTags('Xác thực (Auth)')
 @Controller('auth')
@@ -20,6 +25,11 @@ export class AuthController {
   @Get('verify-email')
   @ApiOperation({
     summary: 'Xác minh email qua token (query)',
+    operationId: 'auth_verify-email',
+  })
+  @ZodResponse({
+    type: VerifyEmailResponseDto,
+    description: 'Response type',
   })
   async verifyEmail(
     @Query('token') token: string,
@@ -31,8 +41,13 @@ export class AuthController {
   @Get('me')
   @ApiOperation({
     summary: 'Lấy thông tin user hiện tại',
+    operationId: 'auth_get-me',
   })
-  @ZodResponse({ type: GetCurrentUserResponseDto, status: 200 })
+  @ZodResponse({
+    type: GetCurrentUserResponseDto,
+    description: 'Response type',
+  })
+  @ApiBearerAuth()
   async getCurrentUser(@Req() req: Request) {
     return this.authService.getCurrentUser(req)
   }
@@ -40,8 +55,13 @@ export class AuthController {
   @Get('session')
   @ApiOperation({
     summary: 'Lấy session (token, hết hạn, user)',
-    operationId: 'auth_get_session',
+    operationId: 'auth_get-session',
   })
+  @ZodResponse({
+    type: GetSessionResponseDto,
+    description: 'Response type',
+  })
+  @ApiBearerAuth()
   async getSession(@Req() req: Request) {
     return this.authService.getSession(req)
   }
@@ -49,7 +69,13 @@ export class AuthController {
   @Get('check')
   @ApiOperation({
     summary: 'Kiểm tra đã đăng nhập hay chưa',
+    operationId: 'auth_check',
   })
+  @ZodResponse({
+    type: CheckAuthResponseDto,
+    description: 'Response type',
+  })
+  @ApiBearerAuth()
   @HttpCode(HttpStatus.OK)
   async checkAuth(@Req() req: Request) {
     return this.authService.checkAuth(req)
