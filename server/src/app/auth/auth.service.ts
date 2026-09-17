@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Verification } from './entities/verification.entity.js'
 import { Repository } from 'typeorm'
@@ -6,6 +6,7 @@ import { PinoLogger } from 'nestjs-pino'
 import { UserService } from '@app/user/user.service.js'
 import { SessionAuthService } from './session-auth/session-auth.service.js'
 import type { Request } from 'express'
+import { apiBadRequest } from '@shared/utils/api-i18n.js'
 
 @Injectable()
 export class AuthService {
@@ -97,13 +98,13 @@ export class AuthService {
     })
     if (!result) {
       this.logger.warn({ msg: 'auth.verify.tokenNotFound', email })
-      throw new BadRequestException('Token xác minh không hợp lệ')
+      apiBadRequest('errors.auth.verificationFailed')
     }
 
     if (result.expiresAt.getTime() < Date.now()) {
       await this.verificationRepo.delete({ id: result.id })
       this.logger.warn({ msg: 'auth.verify.tokenExpired', email })
-      throw new BadRequestException('Token xác minh đã hết hạn')
+      apiBadRequest('errors.auth.tokenExpired')
     }
 
     if (result.identifier.toLowerCase() !== email.toLowerCase().trim()) {
@@ -112,7 +113,7 @@ export class AuthService {
         tokenEmail: result.identifier,
         providedEmail: email,
       })
-      throw new BadRequestException('Email không khớp với token xác minh')
+      apiBadRequest('errors.auth.emailMismatch')
     }
 
     await Promise.all([

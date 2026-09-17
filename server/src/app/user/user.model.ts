@@ -13,7 +13,7 @@ export const GetUserResponseSchema = z.object({
   image: z.string().nullable(),
   emailVerified: z.boolean(),
   role: z.enum(UserRole),
-  isAnonymous: z.boolean().optional(),
+  isAnonymous: z.boolean().default(false),
   phone: z.string().nullable(),
   birthday: dateOnlySchema().nullable(),
   gender: z.enum(Gender).nullable(),

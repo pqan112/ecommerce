@@ -1,7 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { User } from './entities/user.entity.js'
 import { Repository } from 'typeorm'
+import { apiNotFound } from '@shared/utils/api-i18n.js'
 
 @Injectable()
 export class UserService {
@@ -13,7 +14,7 @@ export class UserService {
   async verifyUser(email: string) {
     const user = await this.userRepo.findOne({ where: { email } })
     if (!user) {
-      throw new NotFoundException('Không tìm thấy người dùng')
+      apiNotFound('errors.common.userNotFound')
     }
 
     return this.userRepo.update({ id: user.id }, { emailVerified: true })
