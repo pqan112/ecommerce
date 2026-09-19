@@ -46,11 +46,11 @@ import { AddressModule } from '@app/address/address.module.js'
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
-    { provide: APP_INTERCEPTOR, useClass: ZodSerializerInterceptor },
     {
       provide: APP_PIPE,
       useClass: CustomZodValidationPipe,
     },
+    { provide: APP_INTERCEPTOR, useClass: ZodSerializerInterceptor },
     {
       provide: APP_FILTER,
       useClass: AllExceptionFilter,

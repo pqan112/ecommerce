@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common'
 import { EmailService } from './email.service.js'
 import { InternalEmailController } from './email.controller.js'
 import { ConfigModule } from '@nestjs/config'
+import { internalSecretGuard } from '@core/guards/internal-secret.guard.js'
 
 @Module({
   imports: [ConfigModule],
   controllers: [InternalEmailController],
-  providers: [EmailService],
+  providers: [EmailService, internalSecretGuard],
   exports: [EmailService],
 })
 export class EmailModule {}

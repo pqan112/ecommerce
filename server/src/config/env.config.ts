@@ -37,6 +37,8 @@ const configSchema = z.object({
   SMTP_USER: z.email(),
   SMTP_PASS: z.string().min(1),
   SMTP_FROM: z.email(),
+
+  INTERNAL_API_SECRET: z.string().min(1),
 })
 
 export type Env = z.infer<typeof configSchema>

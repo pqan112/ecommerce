@@ -1,0 +1,26 @@
+import 'server-only'
+import axios from 'axios'
+
+function internalApiBaseUrl(): string {
+  const root = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080')
+    .trim()
+    .replace(/\/+$/, '')
+
+  return `${root}/api/v1/internal`
+}
+
+export const internalApi = axios.create({
+  baseURL: internalApiBaseUrl(),
+  timeout: 15000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
+export function internalSecret(context: string): string | undefined {
+  const secret = process.env.INTERNAL_API_SECRET?.trim()
+  if (!secret) {
+    console.error(`[auth] INTERNAL_API_SECRET is not set - ${context}`)
+  }
+  return secret
+}
