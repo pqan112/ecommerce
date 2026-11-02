@@ -12,7 +12,7 @@ import { internalSecretGuard } from '@core/guards/internal-secret.guard.js'
 import { SendAuthEmailDto } from './email.dto.js'
 
 @ApiExcludeController()
-@Controller('inernal/email')
+@Controller('internal/email')
 @UseGuards(internalSecretGuard)
 export class InternalEmailController {
   constructor(private readonly emailService: EmailService) {}

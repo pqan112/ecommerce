@@ -17,8 +17,8 @@ const configSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   PORT: z.coerce.number().default(8080),
-  CORS_OTHER_URL: z.string(),
-  CLIENT_URL: z.string().min(1),
+  CORS_OTHER_URL: z.string().trim().optional(),
+  CLIENT_URL: z.string().trim().min(1),
   // database
   DB_HOST: z.string().trim().min(1),
   DB_PORT: z.coerce.number().min(1).max(65535),
@@ -37,7 +37,7 @@ const configSchema = z.object({
   SMTP_USER: z.email(),
   SMTP_PASS: z.string().min(1),
   SMTP_FROM: z.email(),
-
+  // internal API
   INTERNAL_API_SECRET: z.string().min(1),
 })
 

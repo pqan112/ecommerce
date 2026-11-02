@@ -89,43 +89,4 @@ export class AuthService {
       user: session.user,
     }
   }
-
-  async verifyEmailCustom(token: string, email: string) {
-    const result = await this.verificationRepo.findOne({
-      where: {
-        value: token,
-      },
-    })
-    if (!result) {
-      this.logger.warn({ msg: 'auth.verify.tokenNotFound', email })
-      apiBadRequest('errors.auth.verificationFailed')
-    }
-
-    if (result.expiresAt.getTime() < Date.now()) {
-      await this.verificationRepo.delete({ id: result.id })
-      this.logger.warn({ msg: 'auth.verify.tokenExpired', email })
-      apiBadRequest('errors.auth.tokenExpired')
-    }
-
-    if (result.identifier.toLowerCase() !== email.toLowerCase().trim()) {
-      this.logger.warn({
-        msg: 'auth.verify.emailMismatch',
-        tokenEmail: result.identifier,
-        providedEmail: email,
-      })
-      apiBadRequest('errors.auth.emailMismatch')
-    }
-
-    await Promise.all([
-      this.userService.verifyUser(email),
-      this.verificationRepo.delete({ id: result.id }),
-    ])
-
-    this.logger.info({ msg: 'auth.email.verified', email })
-
-    return {
-      success: true,
-      message: 'Xác thực email thành công',
-    }
-  }
 }

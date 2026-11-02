@@ -22,22 +22,6 @@ import {
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Get('verify-email')
-  @ApiOperation({
-    summary: 'Xác minh email qua token (query)',
-    operationId: 'auth_verify-email',
-  })
-  @ZodResponse({
-    type: VerifyEmailResponseDto,
-    description: 'Response type',
-  })
-  async verifyEmail(
-    @Query('token') token: string,
-    @Query('email') email: string,
-  ) {
-    return this.authService.verifyEmailCustom(token, email)
-  }
-
   @Get('me')
   @ApiOperation({
     summary: 'Lấy thông tin user hiện tại',

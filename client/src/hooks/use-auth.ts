@@ -37,7 +37,7 @@ export const useSignUp = (
           messages?.success ??
           'Account created! Please check your email to verify your account',
       )
-      router.push('/auth/signin')
+      // router.push('/auth/signin')
     },
     onError: (error: unknown) => {
       const message = (
@@ -54,6 +54,37 @@ export const useSignUp = (
         typeof message === 'string'
           ? message
           : (messages?.error ?? 'Sign up failed'),
+      )
+    },
+  })
+}
+
+export const useResendVerificationEmail = (messages?: AuthToastMessages) => {
+  return useMutation({
+    mutationFn: (email: string) => authService.resendVerificationEmail(email),
+
+    onSuccess: () => {
+      toast.success(
+        messages?.success ??
+          'Verification email sent! Please check your email.',
+      )
+    },
+
+    onError: (error: unknown) => {
+      const message = (
+        error as {
+          response?: {
+            data?: {
+              message?: string
+            }
+          }
+        }
+      )?.response?.data?.message
+
+      toast.error(
+        typeof message === 'string'
+          ? message
+          : (messages?.error ?? 'Failed to send verification email'),
       )
     },
   })

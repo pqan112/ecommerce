@@ -11,9 +11,9 @@ async function postAuthEmail(
   path: '/email/verification' | '/email/password-reset',
   payload: SendAuthEmailPayload,
 ): Promise<void> {
-  const secret = internalSecret('auth meial was NOT sent')
+  const secret = internalSecret('auth email was NOT sent')
   if (!secret) return
-
+  console.log('@@', secret)
   try {
     const res = await internalApi.post<{ success: boolean }>(path, payload, {
       headers: {
