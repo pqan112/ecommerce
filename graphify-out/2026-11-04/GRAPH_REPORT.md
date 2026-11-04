@@ -1,17 +1,17 @@
 # Graph Report - ecommerce  (2026-11-04)
 
 ## Corpus Check
-- 140 files · ~16,740 words
+- 143 files · ~17,226 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 5, .ico 1, .css 1)
 
 ## Summary
-- 943 nodes · 1658 edges · 70 communities (47 shown, 23 thin omitted)
+- 950 nodes · 1713 edges · 75 communities (52 shown, 23 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 28 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6270f55b`
+- Built from commit: `2d831cae`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -45,9 +45,9 @@
 - App Config & Swagger
 - Product Entities
 - Root Layout & Query
-- Session
+- User
 - Logger & Correlation ID
-- Next Config & Axios
+- next
 - sheet.tsx
 - dialog.tsx
 - Category Entity
@@ -59,7 +59,7 @@
 - Vitest Config
 - Account Entity
 - package.json
-- session-auth.service.ts
+- use-auth.ts
 - server/README.md
 - Client pnpm Workspace
 - Server pnpm Workspace
@@ -70,21 +70,24 @@
 - Migration: Product Image
 - Graphify
 - PostCSS Config
-- Order Types
-- Product Types
+- signin-form.tsx
+- client/eslint.config.mjs
 - client/README.md
 - TypeOrmConfigService
 - AGENTS.md
 - prettier
-- @nestjs/testing
+- cn
 - tsx
-- ts-patch
 - @types/express
-- typescript-transform-paths
+- product.entity.ts
 - field.tsx
 - select.tsx
-- @nestjs/config
-- SessionAuthService
+- Gender
+- UserRole
+- @eslint/eslintrc
+- @types/supertest
+- @vitest/coverage-v8
+- @types/node@^24.0.0
 
 ## God Nodes (most connected - your core abstractions)
 1. `@nestjs/common` - 36 edges
@@ -96,40 +99,44 @@
 7. `compilerOptions` - 16 edges
 8. `@nestjs/config` - 16 edges
 9. `SignInForm()` - 15 edges
-10. `cn` - 14 edges
+10. `Button()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `SignInPage()` --calls--> `SignInForm()`  [EXTRACTED]
   client/src/app/auth/signin/page.tsx → client/src/components/auth/signin-form.tsx
-- `SignUpPage()` --calls--> `SignUpForm()`  [EXTRACTED]
-  client/src/app/auth/signup/page.tsx → client/src/components/auth/signup-form.tsx
-- `SignInForm()` --calls--> `Button()`  [EXTRACTED]
-  client/src/components/auth/signin-form.tsx → client/src/components/ui/button.tsx
-- `Account` --references--> `User`  [EXTRACTED]
-  server/src/app/auth/entities/account.entity.ts → server/src/app/user/entities/user.entity.ts
-- `Account` --inherits--> `BaseEntity`  [EXTRACTED]
-  server/src/app/auth/entities/account.entity.ts → server/src/config/database/base.entity.ts
+- `ForgotPasswordPage()` --calls--> `ForgotPasswordForm()`  [EXTRACTED]
+  client/src/app/auth/forgot-password/page.tsx → client/src/components/auth/forgot-password-form.tsx
+- `VerifyEmailPage()` --calls--> `getAuthClient()`  [EXTRACTED]
+  client/src/app/auth/verify-email/page.tsx → client/src/lib/auth/auth-client.ts
+- `ForgotPasswordForm()` --calls--> `Button()`  [EXTRACTED]
+  client/src/components/auth/forgot-password-form.tsx → client/src/components/ui/button.tsx
+- `ForgotPasswordForm()` --calls--> `Field()`  [EXTRACTED]
+  client/src/components/auth/forgot-password-form.tsx → client/src/components/ui/field.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (70 total, 23 thin omitted)
+## Communities (75 total, 23 thin omitted)
 
 ### Community 0 - "signin-form.tsx"
-Cohesion: 0.17
-Nodes (21): SignInPage(), SignUpPage(), SignInForm(), SignUpForm(), SignUpFormValues, Card(), CardContent(), Checkbox() (+13 more)
+Cohesion: 0.26
+Nodes (16): ForgotPasswordPage(), SignUpPage(), ForgotPasswordForm(), SignInForm(), SignUpForm(), SignUpFormValues, Card(), CardContent() (+8 more)
 
 ### Community 1 - "API Types & DTOs"
 Cohesion: 0.05
-Nodes (40): Category, CategoryTranslationRow, CreateAddressDto, CreateOrderDto, CreateOrderItemDto, CreatePaymentDto, ForgotPasswordDto, ForgotPasswordResponse (+32 more)
+Nodes (42): Category, CategoryTranslationRow, CreateAddressDto, CreateOrderDto, CreateOrderItemDto, CreatePaymentDto, LocaleApiRow, Order (+34 more)
+
+### Community 2 - "Auth Controller"
+Cohesion: 0.09
+Nodes (9): AuthController, AuthService, SessionAuthService, cookieValue(), extractBearerToken(), extractSessionTokenFromHeaders(), readSessionCookieValue(), SESSION_COOKIE_NAMES (+1 more)
 
 ### Community 3 - "Client Dependencies"
-Cohesion: 0.07
-Nodes (34): eslintConfig, devDependencies, babel-plugin-react-compiler@1.0.0, dotenv-cli@^11.1.0, eslint@^9, eslint-config-next@16.3.5, eslint-config-prettier@^10.1.8, eslint-plugin-prettier@^5.5.6 (+26 more)
+Cohesion: 0.09
+Nodes (29): devDependencies, babel-plugin-react-compiler@1.0.0, dotenv-cli@^11.1.0, eslint@^9, eslint-config-prettier@^10.1.8, eslint-plugin-prettier@^5.5.6, tailwindcss@^4, @tailwindcss/postcss@^4 (+21 more)
 
 ### Community 4 - "Product Image & Email Specs"
 Cohesion: 0.12
-Nodes (5): CreateProductImageDto, UpdateProductImageDto, ProductImageController, ProductImageModule, ProductImageService
+Nodes (6): @nestjs/testing, CreateProductImageDto, UpdateProductImageDto, ProductImageController, ProductImageModule, ProductImageService
 
 ### Community 5 - "Address Controller"
 Cohesion: 0.12
@@ -144,36 +151,36 @@ Cohesion: 0.12
 Nodes (5): CreateProductDto, UpdateProductDto, ProductController, ProductModule, ProductService
 
 ### Community 8 - "Server Runtime Deps"
-Cohesion: 0.07
-Nodes (29): cookie-parser, ioredis, @nestjs/core, @nestjs/observe, @nestjs/platform-express, nodemailer, pino-http, reflect-metadata (+21 more)
+Cohesion: 0.06
+Nodes (31): cookie-parser, ioredis, @nestjs/observe, @nestjs/platform-express, @nestjs/swagger, nodemailer, pino-http, reflect-metadata (+23 more)
 
 ### Community 9 - "Server TSConfig"
 Cohesion: 0.07
 Nodes (27): compilerOptions, allowSyntheticDefaultImports, declaration, emitDecoratorMetadata, esModuleInterop, experimentalDecorators, incremental, isolatedModules (+19 more)
 
 ### Community 10 - "Auth DTOs & Zod"
-Cohesion: 0.09
-Nodes (24): nestjs-zod, nestjs-zod@^5.5.0, CheckAuthResponseDto, GetSessionResponseDto, VerifyEmailResponseDto, CheckAuthResponseSchema, GetSessionResponseSchema, VerifyEmailResponseSchema (+16 more)
+Cohesion: 0.19
+Nodes (12): CheckAuthResponseDto, GetSessionResponseDto, VerifyEmailResponseDto, CheckAuthResponseSchema, GetSessionResponseSchema, VerifyEmailResponseSchema, GetCurrentUserResponseDto, GetCurrentUserResponseSchema (+4 more)
 
 ### Community 11 - "Better Auth Setup"
-Cohesion: 0.15
-Nodes (13): better-auth@^1.7.5, GET, POST, appUrl, auth, pool, internalApi, internalSecret() (+5 more)
+Cohesion: 0.13
+Nodes (15): axios@^1.20.0, better-auth@^1.7.5, GET, POST, appUrl, auth, pool, internalApi (+7 more)
 
 ### Community 12 - "app.module.ts"
-Cohesion: 0.15
-Nodes (5): AuthModule, AppModule, allConfigs, PinoLoggerModule, CorrelationIdMiddleware
+Cohesion: 0.12
+Nodes (12): @nestjs/core, @nestjs/throttler, nestjs-zod, @nestjs/core@^12.0.1, @nestjs/throttler@^6.5.0, AuthModule, AppModule, allConfigs (+4 more)
 
 ### Community 13 - "Server Dev Deps"
-Cohesion: 0.09
-Nodes (23): @nestjs/cli, @nestjs/mau, @nestjs/schematics, pino-pretty, source-map-support, @types/supertest, @types/uuid, devDependencies (+15 more)
+Cohesion: 0.08
+Nodes (24): @nestjs/cli, @nestjs/schematics, pino-pretty, source-map-support, supertest, ts-patch, @types/cookie-parser, @types/uuid (+16 more)
 
 ### Community 14 - "shadcn Config"
 Cohesion: 0.09
 Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent (+13 more)
 
 ### Community 15 - "Client UI Deps"
-Cohesion: 0.10
-Nodes (20): dependencies, class-variance-authority@^0.7.1, @hookform/resolvers@^5.9.1, pg@^8.23.0, react-dom@19.2.8, react-hook-form@^7.90.0, server-only@^0.0.1, shadcn@^4.21.0 (+12 more)
+Cohesion: 0.11
+Nodes (19): dependencies, @base-ui/react@^1.8.0, lucide-react@^1.46.0, pg@^8.23.0, react@19.2.8, react-dom@19.2.8, server-only@^0.0.1, shadcn@^4.21.0 (+11 more)
 
 ### Community 16 - "Nest Feature Modules"
 Cohesion: 0.23
@@ -184,8 +191,8 @@ Cohesion: 0.10
 Nodes (19): POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER, container_name, environment, image, ports, volumes (+11 more)
 
 ### Community 18 - "Internal Email Controller"
-Cohesion: 0.16
-Nodes (3): InternalEmailController, SendAuthEmailDto, EmailService
+Cohesion: 0.13
+Nodes (4): InternalEmailController, SendAuthEmailDto, SendAuthEmailSchema, EmailService
 
 ### Community 19 - "Client TSConfig"
 Cohesion: 0.11
@@ -196,44 +203,44 @@ Cohesion: 0.11
 Nodes (19): scripts, build, deploy, format, lint, migration:generate, migration:revert, migration:run (+11 more)
 
 ### Community 21 - "Database Config"
-Cohesion: 0.17
-Nodes (11): dotenv, typeorm-naming-strategies, typeorm-naming-strategies@^4.1.0, dotenv@^17.4.2, env, DATABASE_CONFIG, DatabaseConfig, configSchema (+3 more)
+Cohesion: 0.19
+Nodes (10): typeorm-naming-strategies, typeorm-naming-strategies@^4.1.0, env, DATABASE_CONFIG, DatabaseConfig, configSchema, Env, envFile (+2 more)
 
 ### Community 22 - "Email Module"
-Cohesion: 0.17
-Nodes (6): @nestjs/swagger, @nestjs/swagger@^12.0.1, EmailModule, EmailOptions, internalSecretGuard, verifyInternalSecret()
+Cohesion: 0.18
+Nodes (4): EmailModule, EmailOptions, internalSecretGuard, verifyInternalSecret()
 
 ### Community 23 - "Auth Entities"
-Cohesion: 0.23
-Nodes (5): typeorm, BaseEntity, decimalColumn, decimalColumnTransformer, nullableDecimalColumn
+Cohesion: 0.28
+Nodes (3): typeorm, Verification, BaseEntity
 
 ### Community 24 - "server/package.json"
 Cohesion: 0.12
-Nodes (15): @eslint/eslintrc, @types/cookie-parser, @vitest/coverage-v8, author, description, @eslint/eslintrc@^3.3.7, @types/cookie-parser@^1.4.10, @types/node@^24.0.0 (+7 more)
+Nodes (15): dotenv, @nestjs/mau, typescript-transform-paths, author, description, dotenv@^17.4.2, eslint-plugin-prettier@^5.5.6, @nestjs/mau@^0.2.6 (+7 more)
 
 ### Community 25 - "Exception Filter"
-Cohesion: 0.21
+Cohesion: 0.23
 Nodes (8): AllExceptionFilter, ApiErrorContext, ApiErrorPayload, buildApiErrorPayload(), extractFromHttpExceptionBody(), formatClientErrorMessage(), NestHttpErrorBody, payloadFromUnknownException()
 
 ### Community 26 - "App Config & Swagger"
-Cohesion: 0.36
-Nodes (6): setupApp(), setupSwagger(), APP_CONFIG, AppConfig, bootstrap(), parseEnvOrigins()
+Cohesion: 0.33
+Nodes (8): @nestjs/config, nestjs-pino, setupApp(), setupSwagger(), APP_CONFIG, AppConfig, bootstrap(), parseEnvOrigins()
 
 ### Community 28 - "Root Layout & Query"
-Cohesion: 0.20
-Nodes (10): @tanstack/react-query@^5.102.8, @tanstack/react-query-devtools@^5.102.8, inter, metadata, RootLayout(), spaceGrotesk, createQueryClient(), QueryProvider() (+2 more)
+Cohesion: 0.22
+Nodes (9): @tanstack/react-query-devtools@^5.102.8, inter, metadata, RootLayout(), spaceGrotesk, createQueryClient(), QueryProvider(), @tanstack/react-query (+1 more)
 
 ### Community 30 - "Logger & Correlation ID"
-Cohesion: 0.31
-Nodes (4): nestjs-pino, nestjs-pino@^5.1.0, Env, CORRELATION_ID_HEADER
+Cohesion: 0.24
+Nodes (3): PinoLoggerModule, CorrelationIdMiddleware, CORRELATION_ID_HEADER
 
-### Community 31 - "Next Config & Axios"
-Cohesion: 0.17
-Nodes (8): nextConfig, axios@^1.20.0, next@16.3.5, sonner@^2.0.8, axiosInstance, axios, next, sonner
+### Community 31 - "next"
+Cohesion: 0.33
+Nodes (3): nextConfig, next@16.3.5, next
 
 ### Community 32 - "sheet.tsx"
-Cohesion: 0.12
-Nodes (10): @base-ui/react@^1.8.0, cn@^0.3.0, lucide-react@^1.46.0, Separator(), SheetContent(), SheetOverlay(), SheetPortal(), @base-ui/react (+2 more)
+Cohesion: 0.22
+Nodes (3): SheetContent(), SheetOverlay(), SheetPortal()
 
 ### Community 33 - "dialog.tsx"
 Cohesion: 0.20
@@ -252,8 +259,8 @@ Cohesion: 0.33
 Nodes (6): scripts, build, dev, lint, lint:fix, start
 
 ### Community 39 - "Auth Client"
-Cohesion: 0.25
-Nodes (8): AuthClient, createConfiguredClient(), getAuthClient(), serverBaseUrl(), authService, readSessionToken(), AuthResponse, User
+Cohesion: 0.47
+Nodes (5): AuthClient, createConfiguredClient(), getAuthClient(), serverBaseUrl(), readSessionToken()
 
 ### Community 40 - "Vitest Config"
 Cohesion: 0.40
@@ -263,9 +270,9 @@ Nodes (4): vite-tsconfig-paths, vitest, vite-tsconfig-paths@^5.1.4, vitest@^4.1.
 Cohesion: 0.15
 Nodes (13): author, dependencies, husky@^9.1.7, description, keywords, license, main, name (+5 more)
 
-### Community 43 - "session-auth.service.ts"
-Cohesion: 0.48
-Nodes (6): cookieValue(), extractBearerToken(), extractSessionTokenFromHeaders(), readSessionCookieValue(), SESSION_COOKIE_NAMES, stripSignature()
+### Community 43 - "use-auth.ts"
+Cohesion: 0.18
+Nodes (12): sonner@^2.0.8, ROUTES, AuthToastMessages, axiosInstance, authService, AuthResponse, ForgotPasswordDto, ForgotPasswordResponse (+4 more)
 
 ### Community 44 - "server/README.md"
 Cohesion: 0.18
@@ -283,45 +290,61 @@ Nodes (3): allowBuilds, esbuild, @scarf/scarf
 Cohesion: 0.50
 Nodes (3): Code Exploration, Graph Maintenance, Graphify
 
+### Community 54 - "signin-form.tsx"
+Cohesion: 0.20
+Nodes (8): @hookform/resolvers@^5.9.1, react-hook-form@^7.90.0, SignInPage(), Checkbox(), useSignIn(), @hookform/resolvers, lucide-react, react-hook-form
+
+### Community 55 - "client/eslint.config.mjs"
+Cohesion: 0.25
+Nodes (5): eslintConfig, eslint-config-next@16.3.5, @tanstack/eslint-plugin-query@^5.102.8, eslint-config-next, @tanstack/eslint-plugin-query
+
 ### Community 56 - "client/README.md"
 Cohesion: 0.50
 Nodes (3): Deploy on Vercel, Getting Started, Learn More
 
-### Community 60 - "@nestjs/testing"
-Cohesion: 0.33
-Nodes (4): @nestjs/testing, supertest, @nestjs/testing@^12.0.1, supertest@^7.0.0
+### Community 60 - "cn"
+Cohesion: 0.29
+Nodes (4): cn@^0.3.0, Separator(), @base-ui/react, cn
+
+### Community 64 - "product.entity.ts"
+Cohesion: 0.70
+Nodes (3): decimalColumn, decimalColumnTransformer, nullableDecimalColumn
 
 ### Community 66 - "field.tsx"
-Cohesion: 0.14
-Nodes (4): react@19.2.8, fieldVariants, Label(), react
+Cohesion: 0.21
+Nodes (6): class-variance-authority@^0.7.1, Field(), fieldVariants, Label(), class-variance-authority, react
 
 ### Community 67 - "select.tsx"
 Cohesion: 0.24
 Nodes (3): SelectContent(), SelectScrollDownButton(), SelectScrollUpButton()
 
-### Community 68 - "@nestjs/config"
-Cohesion: 0.31
-Nodes (6): @nestjs/config, @nestjs/throttler, @nestjs/throttler@^6.5.0, THROTTLER_CONFIG, ThrottlerConfig, AppThrottlerModule
+### Community 68 - "Gender"
+Cohesion: 0.40
+Nodes (4): Gender, FAMALE, MALE, OTHER
+
+### Community 69 - "UserRole"
+Cohesion: 0.40
+Nodes (4): UserRole, ADMIN, CUSTOMER, UNREGISTER
 
 ## Knowledge Gaps
 - **6 isolated node(s):** `FAMALE`, `MALE`, `OTHER`, `ADMIN`, `CUSTOMER` (+1 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 371 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 369 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `@nestjs/common` connect `Nest Feature Modules` to `Product Image & Email Specs`, `Address Controller`, `Category Controller`, `Product Controller & DTOs`, `Server Runtime Deps`, `@nestjs/config`, `Auth DTOs & Zod`, `app.module.ts`, `Database Config`, `Email Module`, `server/package.json`, `Exception Filter`, `App Config & Swagger`, `@nestjs/testing`, `Logger & Correlation ID`?**
+- **Why does `@nestjs/common` connect `Nest Feature Modules` to `Product Image & Email Specs`, `Address Controller`, `Category Controller`, `Product Controller & DTOs`, `Server Runtime Deps`, `Auth DTOs & Zod`, `app.module.ts`, `Database Config`, `Email Module`, `server/package.json`, `Exception Filter`, `App Config & Swagger`, `Logger & Correlation ID`?**
   _High betweenness centrality (0.198) - this node is a cross-community bridge._
 - **What connects `FAMALE`, `MALE`, `OTHER` to the rest of the system?**
   _6 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `API Types & DTOs` be split into smaller, more focused modules?**
-  _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
-- **Why does `typeorm` connect `Auth Entities` to `Server Runtime Deps`, `Migration: User/Auth`, `Nest Feature Modules`, `Migration: Address`, `Migration: Category`, `Migration: Product`, `Migration: Product Image`, `Database Config`, `server/package.json`?**
-  _High betweenness centrality (0.067) - this node is a cross-community bridge._
+  _Cohesion score 0.048726467331118496 - nodes in this community are weakly interconnected._
+- **Why does `typeorm` connect `Auth Entities` to `product.entity.ts`, `Server Runtime Deps`, `Migration: User/Auth`, `Nest Feature Modules`, `Migration: Address`, `Migration: Category`, `Migration: Product`, `Migration: Product Image`, `Database Config`, `server/package.json`?**
+  _High betweenness centrality (0.066) - this node is a cross-community bridge._
+- **Should `Auth Controller` be split into smaller, more focused modules?**
+  _Cohesion score 0.09411764705882353 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `field.tsx` to `signin-form.tsx`, `dialog.tsx`, `sheet.tsx`, `Client Dependencies`, `select.tsx`, `Client UI Deps`, `signin-form.tsx`, `Root Layout & Query`, `card.tsx`?**
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
 - **Should `Client Dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.07396870554765292 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `field.tsx` to `signin-form.tsx`, `dialog.tsx`, `sheet.tsx`, `select.tsx`, `Client Dependencies`, `Root Layout & Query`?**
-  _High betweenness centrality (0.046) - this node is a cross-community bridge._
-- **Should `Product Image & Email Specs` be split into smaller, more focused modules?**
-  _Cohesion score 0.12298387096774194 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09425287356321839 - nodes in this community are weakly interconnected._

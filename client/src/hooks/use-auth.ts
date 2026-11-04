@@ -1,6 +1,11 @@
 import { ROUTES } from '@/constants/routes'
 import { authService } from '@/services/auth.service'
-import { ForgotPasswordDto, SignInDto, SignUpDto } from '@/types/api.types'
+import {
+  ForgotPasswordDto,
+  ResetPasswordDto,
+  SignInDto,
+  SignUpDto,
+} from '@/types/api.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
@@ -149,6 +154,27 @@ export const useForgotPassword = (messages?: AuthToastMessages) => {
         typeof message === 'string'
           ? message
           : (messages?.error ?? 'Failed to send reset email'),
+      )
+    },
+  })
+}
+
+export const useResetPassword = (messages?: AuthToastMessages) => {
+  const router = useRouter()
+  return useMutation({
+    mutationFn: (data: ResetPasswordDto) => authService.resetPassword(data),
+    onSuccess: () => {
+      toast.success(messages?.success ?? 'Password reset successful')
+      router.push(ROUTES.auth.signin)
+    },
+    onError: (error: unknown) => {
+      const message = (error as { response?: { data?: { message?: string } } })
+        ?.response?.data?.message
+
+      toast.error(
+        typeof message === 'string'
+          ? message
+          : (messages?.error ?? 'Password reset failed'),
       )
     },
   })

@@ -4,6 +4,8 @@ import {
   AuthResponse,
   ForgotPasswordDto,
   ForgotPasswordResponse,
+  ResetPasswordDto,
+  ResetPasswordResponse,
   SignInDto,
   SignUpDto,
   User,
@@ -155,5 +157,22 @@ export const authService = {
     }
 
     return { success: true, message: 'Đã gửi email đặt lại mật khẩu' }
+  },
+
+  resetPassword: async (
+    data: ResetPasswordDto,
+  ): Promise<ResetPasswordResponse> => {
+    const res = await getAuthClient().resetPassword(data)
+
+    if (res.error) {
+      throw Object.assign(
+        new Error(res.error.message || 'Đặt lại mật khẩu thất bại'),
+        {
+          response: { data: { message: res.error.message } },
+        },
+      )
+    }
+
+    return { success: true }
   },
 }

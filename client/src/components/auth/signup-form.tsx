@@ -17,6 +17,7 @@ import {
   FieldSeparator,
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
 import { Button } from '@/components/ui/button'
 // import { useGoogleSignIn } from '@/hooks/use-auth'
 // import { SocialAuthButtons } from '@/components/auth/social-auth-buttons'
@@ -107,9 +108,9 @@ const SignUpForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
 
               <Field>
                 <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
-                <Input
+                <PasswordInput
                   id="password"
-                  type="password"
+                  autoComplete="new-password"
                   {...register('password')}
                   disabled={signUpMutation.isPending}
                 />
@@ -122,9 +123,9 @@ const SignUpForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
                 <FieldLabel htmlFor="confirmPassword">
                   Xác nhận mật khẩu
                 </FieldLabel>
-                <Input
+                <PasswordInput
                   id="confirmPassword"
-                  type="password"
+                  autoComplete="new-password"
                   {...register('confirmPassword')}
                   disabled={signUpMutation.isPending}
                 />

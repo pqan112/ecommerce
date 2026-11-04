@@ -12,14 +12,14 @@ import {
   FieldSeparator,
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
 import { useSignIn } from '@/hooks/use-auth'
 import { cn } from '@/lib/utils'
 import { SignInDto } from '@/types/api.types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
@@ -27,7 +27,6 @@ export default function SignInForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
-  const [showPassword, setShowPassword] = useState(false)
   const searchParams = useSearchParams()
   const redirectTo = searchParams.get('redirect') ?? undefined
 
@@ -109,27 +108,12 @@ export default function SignInForm({
                     Quên mật khẩu?
                   </a>
                 </div>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    className="pr-10"
-                    {...register('password')}
-                    disabled={signInMutation.isPending}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
-                    className="text-muted-foreground hover:text-foreground absolute inset-y-0 right-0 flex w-10 items-center justify-center"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="size-4" />
-                    ) : (
-                      <Eye className="size-4" />
-                    )}
-                  </button>
-                </div>
+                <PasswordInput
+                  id="password"
+                  autoComplete="current-password"
+                  {...register('password')}
+                  disabled={signInMutation.isPending}
+                />
                 {errors.password && (
                   <FieldError className="text-destructive">
                     {errors.password.message}
