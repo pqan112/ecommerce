@@ -1,4 +1,5 @@
 'use client'
+import { ROUTES } from '@/constants/routes'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -102,7 +103,7 @@ export default function SignInForm({
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
                   <a
-                    href="/auth/forgot-password"
+                    href={ROUTES.auth.forgotPassword}
                     className="ml-auto text-sm underline-offset-2 hover:underline"
                   >
                     Quên mật khẩu?
@@ -162,7 +163,7 @@ export default function SignInForm({
               <FieldDescription className="text-center">
                 Chưa có tài khoản?{' '}
                 <a
-                  href="/auth/signup"
+                  href={ROUTES.auth.signup}
                   className="font-medium text-primary hover:underline"
                 >
                   Đăng ký

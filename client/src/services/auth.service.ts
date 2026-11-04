@@ -1,5 +1,13 @@
+import { ROUTES } from '@/constants/routes'
 import { getAuthClient } from '@/lib/auth/auth-client'
-import { AuthResponse, SignInDto, SignUpDto, User } from '@/types/api.types'
+import {
+  AuthResponse,
+  ForgotPasswordDto,
+  ForgotPasswordResponse,
+  SignInDto,
+  SignUpDto,
+  User,
+} from '@/types/api.types'
 
 function mapAuthUser(user: {
   id: string
@@ -128,5 +136,24 @@ export const authService = {
     const token = await readSessionToken()
 
     return { success: true, user, token }
+  },
+
+  forgotPassword: async (
+    data: ForgotPasswordDto,
+  ): Promise<ForgotPasswordResponse> => {
+    const res = await getAuthClient().requestPasswordReset({
+      email: data.email,
+      redirectTo: ROUTES.auth.resetPassword,
+    })
+
+    if (res.error) {
+      const msg = res.error.message || 'Gửi email thất bại'
+
+      throw Object.assign(new Error(msg), {
+        response: { data: { message: msg } },
+      })
+    }
+
+    return { success: true, message: 'Đã gửi email đặt lại mật khẩu' }
   },
 }

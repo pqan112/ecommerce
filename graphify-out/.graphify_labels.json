@@ -26,7 +26,6 @@
   "27": "Product Entities",
   "28": "Root Layout & Query",
   "30": "Logger & Correlation ID",
-  "31": "Next Config & Axios",
   "34": "Category Entity",
   "35": "Server ESLint",
   "36": "Nest CLI Config",
@@ -43,7 +42,5 @@
   "50": "Migration: Product",
   "51": "Migration: Product Image",
   "53": "PostCSS Config",
-  "54": "Order Types",
-  "55": "Product Types",
   "61": "tsx"
 }

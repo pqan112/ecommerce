@@ -1,3 +1,4 @@
+import { ROUTES } from '@/constants/routes'
 import axios, { AxiosError } from 'axios'
 import { redirect } from 'next/navigation'
 import { toast } from 'sonner'
@@ -18,7 +19,7 @@ axiosInstance.interceptors.response.use(
       toast.error('Bạn cần đăng nhập để tiếp tục')
 
       if (typeof window !== 'undefined') {
-        redirect('/auth/signin')
+        redirect(ROUTES.auth.signin)
       }
     }
 

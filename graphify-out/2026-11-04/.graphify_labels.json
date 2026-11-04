@@ -1,5 +1,4 @@
 {
-  "0": "Client Auth Pages",
   "1": "API Types & DTOs",
   "2": "Auth Controller",
   "3": "Client Dependencies",
@@ -11,7 +10,6 @@
   "9": "Server TSConfig",
   "10": "Auth DTOs & Zod",
   "11": "Better Auth Setup",
-  "12": "App Module",
   "13": "Server Dev Deps",
   "14": "shadcn Config",
   "15": "Client UI Deps",
@@ -29,8 +27,6 @@
   "28": "Root Layout & Query",
   "30": "Logger & Correlation ID",
   "31": "Next Config & Axios",
-  "32": "Auth Hook & Service",
-  "33": "Client ESLint",
   "34": "Category Entity",
   "35": "Server ESLint",
   "36": "Nest CLI Config",

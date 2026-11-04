@@ -1,4 +1,5 @@
 'use client'
+import { ROUTES } from '@/constants/routes'
 import { useSignUp } from '@/hooks/use-auth'
 import { SignUpDto } from '@/types/api.types'
 import { useForm } from 'react-hook-form'
@@ -153,7 +154,7 @@ const SignUpForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
               <FieldDescription className="text-center">
                 Đã có tài khoản?{' '}
                 <a
-                  href="/auth/signin"
+                  href={ROUTES.auth.signin}
                   className="font-medium text-primary hover:underline"
                 >
                   Đăng nhập

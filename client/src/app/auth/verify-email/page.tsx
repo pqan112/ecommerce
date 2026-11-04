@@ -1,5 +1,6 @@
 'use client'
 
+import { ROUTES } from '@/constants/routes'
 import { useResendVerificationEmail } from '@/hooks/use-auth'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -74,7 +75,7 @@ export default function VerifyEmailPage() {
       )}
 
       <Link
-        href="/auth/signin"
+        href={ROUTES.auth.signin}
         className={buttonVariants({ variant: 'outline' })}
       >
         Quay lại đăng nhập

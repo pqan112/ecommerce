@@ -1,5 +1,6 @@
+import { ROUTES } from '@/constants/routes'
 import { authService } from '@/services/auth.service'
-import { SignInDto, SignUpDto } from '@/types/api.types'
+import { ForgotPasswordDto, SignInDto, SignUpDto } from '@/types/api.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
@@ -28,7 +29,7 @@ export const useSignUp = (
 
       if (response.token) {
         toast.success(messages?.success ?? 'Account created successfully')
-        router.push('/product/catalog')
+        router.push(ROUTES.product.catalog)
         return
       }
 
@@ -38,7 +39,7 @@ export const useSignUp = (
           'Account created! Please check your email to verify your account',
       )
 
-      router.push('/auth/signin')
+      router.push(ROUTES.auth.signin)
     },
     onError: (error: unknown) => {
       const message = (
@@ -111,7 +112,7 @@ export const useSignIn = (
 
       toast.success(messages?.success ?? 'Sign in successful')
 
-      router.push(redirectTo ?? '/product/catalog')
+      router.push(redirectTo ?? ROUTES.product.catalog)
     },
 
     onError: (error: unknown) => {
@@ -129,6 +130,25 @@ export const useSignIn = (
         typeof message === 'string'
           ? message
           : (messages?.error ?? 'Sign in failed'),
+      )
+    },
+  })
+}
+
+export const useForgotPassword = (messages?: AuthToastMessages) => {
+  return useMutation({
+    mutationFn: (data: ForgotPasswordDto) => authService.forgotPassword(data),
+    onSuccess: () => {
+      toast.success(messages?.success ?? 'Password reset email sent')
+    },
+    onError: (error: unknown) => {
+      const message = (error as { response?: { data?: { message?: string } } })
+        ?.response?.data?.message
+
+      toast.error(
+        typeof message === 'string'
+          ? message
+          : (messages?.error ?? 'Failed to send reset email'),
       )
     },
   })

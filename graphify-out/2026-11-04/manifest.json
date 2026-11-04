@@ -48,16 +48,16 @@
     "semantic_hash": "1b64b494422746a02bac1942b4c59cb1"
   },
   "client/src/app/auth/signin/page.tsx": {
-    "mtime": 1793725525.266244,
-    "seen": 1793791386.3824525,
-    "ast_hash": "f8535442288b4bdafd685ac94257b3ef",
-    "semantic_hash": "f8535442288b4bdafd685ac94257b3ef"
+    "mtime": 1793799497.693202,
+    "seen": 1793799575.2318044,
+    "ast_hash": "a33126eacfb57322f34ff87b9717afc6",
+    "semantic_hash": ""
   },
   "client/src/app/auth/signup/page.tsx": {
-    "mtime": 1792166863.1365573,
-    "seen": 1793791386.3824537,
-    "ast_hash": "b6cf6a6754c0ea69419473843f762fc9",
-    "semantic_hash": "b6cf6a6754c0ea69419473843f762fc9"
+    "mtime": 1793799508.4811075,
+    "seen": 1793799575.231807,
+    "ast_hash": "c19186a5fe37912c16b35e8bc5cdacb7",
+    "semantic_hash": ""
   },
   "client/src/app/auth/verify-email/page.tsx": {
     "mtime": 1793633631.1820524,
@@ -78,9 +78,9 @@
     "semantic_hash": "12d28f0122ed61a2bcb3c7a57ed9e164"
   },
   "client/src/components/auth/signin-form.tsx": {
-    "mtime": 1793799047.1503356,
-    "seen": 1793799054.826511,
-    "ast_hash": "6cbf1a66cee200ab7fee7fbca25e3cdf",
+    "mtime": 1793799182.123063,
+    "seen": 1793799575.231817,
+    "ast_hash": "8358cc70b59d7ea90130324ba2107fda",
     "semantic_hash": ""
   },
   "client/src/components/auth/signup-form.tsx": {
