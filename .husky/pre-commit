@@ -1,0 +1,10 @@
+echo "Updating Graphify knowledge graph..."
+
+graphify update .
+
+if [ $? -ne 0 ]; then
+  echo "Graphify update failed. Commit aborted."
+  exit 1
+fi
+
+git add graphify-out/
