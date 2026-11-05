@@ -175,4 +175,31 @@ export const authService = {
 
     return { success: true }
   },
+
+  signInWithGoogle: async (redirectPath?: string): Promise<void> => {
+    if (typeof window === 'undefined') return
+
+    const redirect =
+      redirectPath !== undefined && redirectPath !== ''
+        ? redirectPath
+        : ROUTES.product.catalog
+
+    const encoded = encodeURIComponent(
+      redirect.startsWith('/') ? redirect : `/${redirect}`,
+    )
+    const callbackURL = `/auth/callback/google?redirect=${encoded}`
+
+    const res = await getAuthClient().signIn.social({
+      provider: 'google',
+      callbackURL,
+    })
+
+    if (res.error) {
+      throw new Error(res.error.message || 'Khởi tạo đăng nhập Google thất bại')
+    }
+
+    if (res.data?.url) {
+      window.location.href = res.data.url
+    }
+  },
 }

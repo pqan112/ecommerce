@@ -19,8 +19,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
 import { Button } from '@/components/ui/button'
-// import { useGoogleSignIn } from '@/hooks/use-auth'
-// import { SocialAuthButtons } from '@/components/auth/social-auth-buttons'
+import { useGoogleSignIn } from '@/hooks/use-auth'
+import { SocialAuthButtons } from '@/components/auth/social-auth-buttons'
 
 type SignUpFormValues = SignUpDto & { confirmPassword: string }
 const SignUpForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
@@ -31,9 +31,9 @@ const SignUpForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
     error: 'Đăng ký thất bại',
   })
 
-  //   const { signInWithGoogle, isLoading: isGoogleLoading } = useGoogleSignIn({
-  //     error: 'Không thể khởi tạo đăng nhập Google',
-  //   })
+  const { signInWithGoogle, isLoading: isGoogleLoading } = useGoogleSignIn({
+    error: 'Không thể khởi tạo đăng nhập Google',
+  })
 
   const signUpSchema = useMemo(
     () =>
@@ -147,10 +147,10 @@ const SignUpForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
               </Field>
 
               <FieldSeparator>hoặc</FieldSeparator>
-              {/* <SocialAuthButtons
+              <SocialAuthButtons
                 onGoogleSignIn={signInWithGoogle}
                 isGoogleLoading={isGoogleLoading}
-              /> */}
+              />
 
               <FieldDescription className="text-center">
                 Đã có tài khoản?{' '}

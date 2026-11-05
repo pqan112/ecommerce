@@ -8,6 +8,7 @@ import {
 } from '@/types/api.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { toast } from 'sonner'
 
 type AuthToastMessages = {
@@ -178,4 +179,27 @@ export const useResetPassword = (messages?: AuthToastMessages) => {
       )
     },
   })
+}
+
+export const useGoogleSignIn = (messages?: { error?: string }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const signInWithGoogle = async (redirectPath?: string) => {
+    try {
+      setIsLoading(true)
+      await authService.signInWithGoogle(redirectPath)
+    } catch (error: unknown) {
+      const msg = (error as Error)?.message
+      setIsLoading(false)
+      toast.error(
+        (messages?.error ?? 'Unable to initialize Google sign in: ') +
+          (msg ?? ''),
+      )
+      return
+    }
+
+    setIsLoading(false)
+  }
+
+  return { signInWithGoogle, isLoading }
 }

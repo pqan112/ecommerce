@@ -78,15 +78,15 @@
     "semantic_hash": "12d28f0122ed61a2bcb3c7a57ed9e164"
   },
   "client/src/components/auth/signin-form.tsx": {
-    "mtime": 1793809648.411829,
-    "seen": 1793810614.4477239,
-    "ast_hash": "acc6ef1716298ca6bb7ea15ac48ea142",
+    "mtime": 1793894744.7247584,
+    "seen": 1793894793.251571,
+    "ast_hash": "999206da266121b482f2532e0b34d2c1",
     "semantic_hash": ""
   },
   "client/src/components/auth/signup-form.tsx": {
-    "mtime": 1793809695.4676561,
-    "seen": 1793810614.4477258,
-    "ast_hash": "07e739dc6c4f7ede6b2c33da7b41bcc7",
+    "mtime": 1793894640.2130096,
+    "seen": 1793894793.2515757,
+    "ast_hash": "c4bd4b562b84f009ecf9cad332f316ce",
     "semantic_hash": ""
   },
   "client/src/components/ui/button.tsx": {
@@ -156,9 +156,9 @@
     "semantic_hash": "ee6b6a4244373dfc0eba7a1dacf6832f"
   },
   "client/src/hooks/use-auth.ts": {
-    "mtime": 1793808279.321071,
-    "seen": 1793810614.4477568,
-    "ast_hash": "1277155996c7581db88c3650d75a9537",
+    "mtime": 1793886022.4776492,
+    "seen": 1793894793.2516615,
+    "ast_hash": "aec69aa048774665dae97e1166f71d37",
     "semantic_hash": ""
   },
   "client/src/lib/auth/auth-client.ts": {
@@ -168,10 +168,10 @@
     "semantic_hash": "b0ab1396f8492a48477e97dbb9226116"
   },
   "client/src/lib/auth/auth.ts": {
-    "mtime": 1789740775.7833946,
-    "seen": 1793791386.3824804,
-    "ast_hash": "3206fa5bac187edde62d53fcf250a432",
-    "semantic_hash": "3206fa5bac187edde62d53fcf250a432"
+    "mtime": 1793885292.4635756,
+    "seen": 1793894793.2516766,
+    "ast_hash": "d1443dd94e3063168ca28d339eef8f7d",
+    "semantic_hash": ""
   },
   "client/src/lib/auth/internal-api.ts": {
     "mtime": 1789726025.3659317,
@@ -186,9 +186,9 @@
     "semantic_hash": "8fcfdcb59a97056cd242e8e254f944e4"
   },
   "client/src/lib/axios.ts": {
-    "mtime": 1793799927.6071205,
-    "seen": 1793807459.381265,
-    "ast_hash": "7f09c3f4af5663ca2540707d4b602898",
+    "mtime": 1793884922.2209108,
+    "seen": 1793894793.2516937,
+    "ast_hash": "56c460cedf8ec078ad692e465e4ef92c",
     "semantic_hash": ""
   },
   "client/src/lib/query-client.ts": {
@@ -210,9 +210,9 @@
     "semantic_hash": "0de05d4ff70e4ea9a82b4031d173b947"
   },
   "client/src/services/auth.service.ts": {
-    "mtime": 1793807917.2602363,
-    "seen": 1793810614.4477766,
-    "ast_hash": "dedb761ca8abd6038b8d177e67a73ce7",
+    "mtime": 1793885820.023279,
+    "seen": 1793894793.251716,
+    "ast_hash": "df3c3c44b2261914ecc949f632af148e",
     "semantic_hash": ""
   },
   "client/src/types/api.types.ts": {
@@ -915,6 +915,36 @@
     "mtime": 1793809623.5018895,
     "seen": 1793810614.4477434,
     "ast_hash": "1bc23c5542ae65082b658babdc1135e9",
+    "semantic_hash": ""
+  },
+  "client/src/app/api/nest/[...path]/route.ts": {
+    "mtime": 1793879553.1019602,
+    "seen": 1793894793.2514966,
+    "ast_hash": "a38ec2564c2e91e62df0513a1a640c0a",
+    "semantic_hash": ""
+  },
+  "client/src/app/auth/callback/google/page.tsx": {
+    "mtime": 1793894292.5058038,
+    "seen": 1793894793.2515025,
+    "ast_hash": "b63f3698fffa61bf1c272cb66ccd3110",
+    "semantic_hash": ""
+  },
+  "client/src/components/auth/social-auth-buttons.tsx": {
+    "mtime": 1793886085.7836998,
+    "seen": 1793894793.2515807,
+    "ast_hash": "dda9b1c0ee762c3adff547aa34266647",
+    "semantic_hash": ""
+  },
+  "client/src/lib/api/api-url.ts": {
+    "mtime": 1793878332.8797436,
+    "seen": 1793894793.2516665,
+    "ast_hash": "8595363d79df7bd7aab13901924b40f1",
+    "semantic_hash": ""
+  },
+  "client/src/types/hook.types.ts": {
+    "mtime": 1793893372.8836906,
+    "seen": 1793894793.2517266,
+    "ast_hash": "d621757190b91512db36d5d121a70ab9",
     "semantic_hash": ""
   },
   "client/pnpm-lock.yaml": {

@@ -22,6 +22,8 @@ import { useSearchParams } from 'next/navigation'
 import React, { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { useGoogleSignIn } from '@/hooks/use-auth'
+import { SocialAuthButtons } from '@/components/auth/social-auth-buttons'
 
 export default function SignInForm({
   className,
@@ -37,6 +39,10 @@ export default function SignInForm({
     },
     redirectTo,
   )
+
+  const { signInWithGoogle, isLoading: isGoogleLoading } = useGoogleSignIn({
+    error: 'Không thể khởi tạo đăng nhập Google',
+  })
 
   type SignInFormValues = SignInDto & { rememberMe: boolean }
 
@@ -143,6 +149,10 @@ export default function SignInForm({
               </Field>
 
               <FieldSeparator>hoặc</FieldSeparator>
+              <SocialAuthButtons
+                onGoogleSignIn={signInWithGoogle}
+                isGoogleLoading={isGoogleLoading}
+              />
 
               <FieldDescription className="text-center">
                 Chưa có tài khoản?{' '}
